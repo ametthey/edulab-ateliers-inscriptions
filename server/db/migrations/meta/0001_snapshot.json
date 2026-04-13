@@ -1,0 +1,50 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "7be0caa6-8468-4829-b1c6-4910e4c0de14",
+  "prevId": "6831fd3c-9894-4765-825a-7776384aab1c",
+  "tables": {
+    "ateliers": {
+      "name": "ateliers",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "titre": {
+          "name": "titre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'2026-04-11T21:23:58.194Z'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
