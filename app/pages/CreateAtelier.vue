@@ -1,5 +1,4 @@
-<script setup>
-import { ref } from 'vue'
+<script setup> import { ref } from 'vue'
 /*****************************************
  * Formulaire
  *****************************************/
@@ -24,7 +23,7 @@ const title = 'Page de création d\'atelier'
 const description = ''
 
 definePageMeta({
-  layout: 'default'
+  layout: 'default',
 })
 useHead({
   title: title,

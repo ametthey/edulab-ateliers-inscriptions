@@ -1,7 +1,7 @@
 export const setFormPublic = () => ({
-  id: '',
+  atelier_id: null as number | null,
   prenom: '',
   email: '',
   telephone: '',
-  age: '',
+  age: null as number | null
 })

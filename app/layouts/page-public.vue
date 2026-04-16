@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const layoutPublic = 'form-public'
+const layoutPublic = 'page-public'
 </script>
 
 <template>

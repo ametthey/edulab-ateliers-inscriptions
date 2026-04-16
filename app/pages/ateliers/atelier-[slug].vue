@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const { data } = await useFetch('/api/atelier.informations')
+const { data: inscriptionsData } = await useFetch('/api/inscription.informations')
 
 /*****************************************
  * Modal
@@ -9,8 +10,12 @@ const modalOpen = ref(false)
 
 function closeModal() {
   modalOpen.value = false
-  submittedData.value = null
-  resetForm()
+
+  cleanForm()
+}
+
+function cleanForm() {
+  createFormPublic.value = setFormPublic()
 }
 
 /*****************************************
@@ -20,12 +25,13 @@ const createFormPublic = ref(setFormPublic())
 
 const submitAtelierPublic = async () => {
   try {
-    // const response = await $fetch('/api/atelier.informations', {
-    //   method: 'POST',
-    //   body: createFormInfos.value
-    // })
-    modalOpen.value = true
+    createFormPublic.value.atelier_id = atelier.value!.id
 
+    const response = await $fetch('/api/atelier.public', {
+      method: 'POST',
+      body: createFormPublic.value
+    })
+    modalOpen.value = true
 
     // console.log(`le champ titre est ${response.atelier.titre} `)
     console.log('submit atelier public')
@@ -39,6 +45,9 @@ const submitAtelierPublic = async () => {
  *****************************************/
 const route = useRoute()
 const atelier = computed(() => data.value?.find(a => a.id === Number(route.params.slug)))
+const nombreInscriptions = computed(() =>
+  inscriptionsData.value?.filter(i => i.atelier_id === atelier.value?.id).length ?? 0
+)
 
 /*****************************************
  * Meta
@@ -65,23 +74,31 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div v-if="data == undefined">
+    No fucking data
+  </div>
+
+  <div v-else>
       <UContainer>
+        <!-- Les informations de présentation  -->
         <FormPresentationAtelier
           :monid="'form-public-atelier-' + atelier.id"
-          title="Formulaire d'inscription"
+          title="Les informations de l'atelier"
           :atelier="atelier.titre"
           :description="atelier.description"
           :date="atelier.date"
           :horaires="atelier.horaires"
           :places="atelier.nb_places"
+          :inscriptions="nombreInscriptions"
         />
+        <!-- Le formulaire -->
         <div class="flex flex-col align-center container-formulaire-public">
           <UForm
             v-model="createFormPublic.id"
             :data-id="atelier.id"
-            class="flex flex-col items-center justify-items-center"
+            class="pb-8 pt-4 min-w-lg mx-auto flex flex-col items-start justify-items-start"
             @submit="submitAtelierPublic">
+            <p class="text-2xl font-bold">Le formulaire de l'atelier</p>
             <FormInput
                 v-model="createFormPublic.prenom"
                 label="Prénom et Nom"
@@ -113,6 +130,7 @@ useSeoMeta({
             <!-- Bouton envoyer -->
             <UButton
                 type="submit"
+                color="neutral"
                 class="mt-6"
                 >
                 Envoyer
@@ -126,7 +144,15 @@ useSeoMeta({
                 Votre inscription est terminé,<br> vous allez reçevoir un email de confirmation.
                 <br>
                 Voici les informations retenues
-                l'id est {{atelier.id}}
+                l'id de l'atelier est {{atelier.id}}
+                <br>
+                La personne est {{ createFormPublic.prenom }}
+                <br>
+                Son email est {{ createFormPublic.email }}
+                <br>
+                Son téléphone est {{ createFormPublic.telephone }}
+                <br>
+                Son age est {{ createFormPublic.age}}
                 </p>
                 <div class="flex justify-end">
                   <UButton

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     // '@nuxt/eslint',
-    // '@nuxt/fonts',
+    '@nuxt/fonts',
     // '@nuxt/image'
   ],
 

@@ -12,8 +12,8 @@ export default defineAppConfig({
       slots: {
         root: '',
         wrapper: '',
-        labelWrapper: 'flex content-center items-center justify-center gap-1',
-        label: 'block font-medium text-default',
+        labelWrapper: 'flex content-center items-center justify-start gap-1',
+        label: 'block font-bold text-sm',
         container: 'relative',
         description: 'text-muted',
         error: 'mt-2 text-error',

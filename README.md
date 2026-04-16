@@ -15,13 +15,15 @@
 - [x] Supprimer les pages ```_Liste.vue``` ```_Projets.vue``` et leurs dépendances
 - [ ] Trouver comment renommer les posts en atelier-{{titre}} ```atelier-[slug].vue```
 - [x] Ranger les scripts avec cette ordre : META, FORMULAIRE, FONCTION
+- [ ] Quand je sélectionne une lettre sur le front, la souris est mode blinking...
+- [ ] Créer de sous page /edition/atelier-[slug] ou je peux modifier le formulaire de chaque atelier.
 
 ### Components
 
 - [x] ```AppHeader.vue``` - Renommer les labels des pages
 
 ### Server
-
+- [ ] lecture de la documentation sur data-fetching https://nuxt.com/docs/4.x/getting-started/data-fetching
 - [ ] api + files : documentation
 - [ ] data + files : documentation
 - [ ] db + files : documentation

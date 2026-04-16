@@ -1,16 +1,15 @@
 <script setup>
 const { data, refresh } = await useFetch('/api/atelier.informations')
+const { data: inscriptionsData } = await useFetch('/api/inscription.informations')
 
 /*****************************************
  * Tableau
  *****************************************/
 const columns = [
-  { accessorKey: 'id', header: 'ID' },
   { accessorKey: 'titre', header: 'Titre' },
-  { accessorKey: 'horaires', header: 'Horaires' },
   { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'description', header: 'Description' },
   { accessorKey: 'nb_places', header: 'Places' },
+  { id: 'dispo_places', header: 'Places disponible' },
   { id: 'lien', header: 'Lien' },
   { id: 'supprimer', header: 'Supprimer' }
 ]
@@ -33,7 +32,7 @@ const title = 'Page d\'administration'
 const description = ''
 
 definePageMeta({
-  layout: 'default'
+  layout: 'default',
 })
 useHead({
   title: title,
@@ -57,11 +56,15 @@ useSeoMeta({
     <UContainer>
       <h1> Tableau des ateliers</h1>
 
-      <UTable :data="data" :columns="columns" class="flex-1">
+      <UTable id="tableauAteliers" :data="data" :columns="columns" class="flex-1">
         <template #lien-cell="{ row }">
           <NuxtLink :to="`/ateliers/atelier-${row.original.id}`" target="_blank">
           Lien vers l'atelier
           </NuxtLink>
+        </template>
+
+        <template #dispo_places-cell="{ row }">
+          {{ Number(row.original.nb_places) - (inscriptionsData?.filter(i => i.atelier_id === row.original.id).length ?? 0) }}
         </template>
 
         <template #supprimer-cell="{ row }">
@@ -70,12 +73,6 @@ useSeoMeta({
           </UButton>
         </template>
       </UTable>
-      <div class="mb-12">
-        <NuxtLink to="/Ateliers">
-        Voir les ateliers
-        </NuxtLink>
-      </div>
     </UContainer>
   </div>
 </template>
-

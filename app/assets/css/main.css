@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import "tailwindcss";
 @import "@nuxt/ui";
 
@@ -6,48 +6,11 @@
   --font-sans: 'Inter', sans-serif;
 }
 
-:root {
-  --font-size-section: 1.5rem;
-  --font-size-label: 0.875rem;
-
-  --font-weight-section: 500;
-  --font-weight-label-titre: 500;
-  --font-weight-label: 300;
-}
-
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  /* scrollbar-gutter: stable; */
 }
 
 button {
   cursor: pointer;
-}
-
-/*****************************************************
- * Formulaire
- *******************************************************/
-
-.style-section {
-  font-size: var(--font-size-section);
-  font-weight: var(--font-weight-section);
-}
-.style-label-titre {
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-label-titre);
-}
-.style-label {
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-label);
-}
-
-.container--section {
-    /* display: none; */
-  &#container-infos {
-    display: block;
-  }
-}
-
-.layout-banner {
-  /* display: none; */
 }

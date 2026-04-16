@@ -12,7 +12,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="my-4">
+  <div class="my-2">
     <UFormField
       :label="label"
       :name="name"

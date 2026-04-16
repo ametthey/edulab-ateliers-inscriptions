@@ -9,7 +9,7 @@ const title = 'Page des ateliers'
 const description = ''
 
 definePageMeta({
-  layout: 'form-public'
+  layout: 'page-public'
 })
 useHead({
   title: title,
@@ -26,7 +26,7 @@ useSeoMeta({
 <template>
   <div>
     <UContainer>
-      <h1>Liste des ateliers</h1>
+      <p class="text-2xl font-bold">Liste des ateliers</p>
       <div class="mt-1 mb-10 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-8">
         <UCard
           v-for="atelier in data"
@@ -34,24 +34,26 @@ useSeoMeta({
           class=""
         >
           <template #header>
-            <p class="text-sm font-bold">Titre</p>
-            <p>{{atelier.titre}}</p>
-            <p class="text-sm font-bold">Description</p>
-            <p>{{atelier.description}}</p>
-            <p class="text-sm font-bold">Horaires</p>
-            <p>{{atelier.horaires}}</p>
-            <p class="text-sm font-bold">Date</p>
-            <p>{{atelier.date}}</p>
-            <p class="text-sm font-bold">Places disponibles</p>
-            <p>{{atelier.nb_places}}</p>
+            <div class="my-2 flex flex-col justify-items-start">
+              <p class="text-sm font-bold">Titre</p>
+              <p class="text-sm font-light">{{ atelier.titre }}</p>
+            </div>
+            <div class="my-2 flex flex-col justify-items-start">
+              <p class="text-sm font-bold">Date & Horaires</p>
+              <p class="text-sm font-light">Le {{ atelier.date }} de {{ atelier.horaires }}</p>
+            </div>
+            <div class="my-2 flex flex-col justify-items-start">
+              <p class="text-sm font-bold">Nombre de places</p>
+              <p class="text-sm font-light">{{ atelier.nb_places }} places</p>
+              <p class="text-sm font-light">{{ atelier.nb_places }} / {{ atelier.nb_places }} disponibles</p>
+            </div>
           </template>
 
           <template #footer>
             <UButton
               :to="`/ateliers/atelier-${atelier.id}`"
-              label="Inscription"
-              trailing-icon="i-lucide-file-pen-line"
-              color="primary"
+              label="S'inscrire"
+              color="neutral"
               class="w-auto"
               block
             />

@@ -1,33 +1,16 @@
+<script setup lang="ts">
+const layoutDefault = 'default'
+</script>
+
 <template>
   <div>
-    <UHeader>
-      <template #left>
-        <NuxtLink to="/">
-          <img
-            src="/logo.png"
-            alt="logo"
-            class="header-logo"
-          >
-        </NuxtLink>
-      </template>
+    <!-- Header -->
+    <LayoutHeader :layoutName="layoutDefault" />
 
-      <AppHeader />
-
-      <template #right>
-        <UColorModeButton />
-      </template>
-    </UHeader>
-
+    <!-- Main -->
     <UMain>
       <UPage>
-        <UBanner
-          class="fixed bottom-0 layout-banner"
-          title="Cette page utilise le layout DEFAULT"
-          color="primary"
-          icon="i-lucide-info"
-           close-icon="i-lucide-x-circle"
-          close
-        />
+        <!-- <LayoutBanner :layoutName="layoutDefault" /> -->
         <UContainer>
           <slot />
         </UContainer>
@@ -46,9 +29,3 @@
   </div>
 </template>
 
-<style scoped>
-  .header-logo {
-    height: 30px;
-    width: auto;
-  }
-</style>
