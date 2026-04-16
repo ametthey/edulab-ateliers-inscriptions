@@ -1,23 +1,15 @@
 <script setup>
-const { data, refresh } = await useFetch('/api/atelier.informations')
+const { data } = await useFetch('/api/atelier.informations')
 const { data: inscriptionsData, refresh: refreshInscriptions } = await useFetch('/api/inscription.informations')
 
-const columnsInscriptions = [
-  { id: 'numero_place', header: 'Numéro inscrit' },
-  { accessorKey: 'atelier_id', header: 'Atelier' },
-  { accessorKey: 'prenom', header: 'Prénom / Nom' },
-  { accessorKey: 'email', header: 'Email' },
-  { accessorKey: 'telephone', header: 'Téléphone' },
-  { accessorKey: 'age', header: 'Âge' },
-  { id: 'supprimer', header: 'Supprimer' }
-]
-
 const columnsInscriptionsAtelier = [
-  { id: 'numero_place', header: 'Numéro inscrit' },
-  { accessorKey: 'prenom', header: 'Prénom / Nom' },
+  { id: 'numero_place', header: 'N°' },
+  { accessorKey: 'prenom', header: 'Prénom & Nom' },
   { accessorKey: 'email', header: 'Email' },
   { accessorKey: 'telephone', header: 'Téléphone' },
   { accessorKey: 'age', header: 'Âge' },
+  { id: 'mail_confirmation', header: 'Email\nconfirmation' },
+  { id: 'mail_invitation', header: 'Email\ninvitation' },
   { id: 'supprimer', header: 'Supprimer' }
 ]
 
@@ -27,29 +19,6 @@ const supprimerInscription = async (id) => {
     body: { id }
   })
   await refreshInscriptions()
-}
-
-/*****************************************
- * Tableau
- *****************************************/
-const columns = [
-  { accessorKey: 'titre', header: 'Titre' },
-  { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'nb_places', header: 'Places' },
-  { id: 'dispo_places', header: 'Places disponible' },
-  { id: 'lien', header: 'Lien' },
-  { id: 'supprimer', header: 'Supprimer' }
-]
-
-/*****************************************
- * Fonction supprimer atelier
- *****************************************/
-const supprimerAtelier = async (id) => {
-  await $fetch('/api/atelier.informations', {
-    method: 'DELETE',
-    body: { id }
-  })
-  await refresh() // recharge les données
 }
 
 /*****************************************
@@ -75,14 +44,12 @@ useSeoMeta({
 
 <template>
   <div>
-    <UPageHeader
-      :title="title"
-      :description="description"
-    />
-
     <UContainer>
+      <div class="gestion-title mt-20">
+        <p class="text-2xl font-bold">{{title}}</p>
+      </div>
       <div v-for="atelier in data" :key="atelier.id" class="mt-12">
-        <div class="grid grid-cols-3 gap-4 my-2">
+        <div class="flex flex-col items-start max-w-9/10 gap-4 my-2">
           <div class="flex flex-col gap-2">
             <div>
               <p class="text-sm font-bold">Titre</p>
@@ -93,7 +60,7 @@ useSeoMeta({
               <p class="text-sm font-light">{{ atelier.description }}</p>
             </div>
           </div>
-          <div class="flex flex-col gap-2">
+          <div class="flex justify-items-stretch gap-4">
             <div>
               <p class="text-sm font-bold">Date</p>
               <p class="text-sm font-light">{{ atelier.date }}</p>
@@ -102,10 +69,10 @@ useSeoMeta({
               <p class="text-sm font-bold">Horaires</p>
               <p class="text-sm font-light">{{ atelier.horaires }}</p>
             </div>
-          </div>
-          <div>
+            <div>
             <p class="text-sm font-bold">Places disponibles</p>
             <p class="text-sm font-light">{{ Number(atelier.nb_places) - (inscriptionsData?.filter(i => i.atelier_id === atelier.id).length ?? 0) }} / {{ Number(atelier.nb_places) }}</p>
+            </div>
           </div>
         </div>
 
@@ -115,6 +82,8 @@ useSeoMeta({
           class="flex-1 mt-4"
         >
           <template #numero_place-cell="{ row }">{{ row.index + 1 }}</template>
+          <template #mail_confirmation-cell="{ row }">✉️</template>
+          <template #mail_invitation-cell="{ row }">✉️</template>
           <template #supprimer-cell="{ row }">
             <UButton color="error" variant="ghost" @click="supprimerInscription(row.original.id)">
               Supprimer

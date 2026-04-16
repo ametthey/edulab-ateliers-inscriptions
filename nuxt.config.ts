@@ -15,19 +15,25 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  routeRules: {
-  // '/': { prerender: true }
-  },
+  // routeRules: {
+  // // '/': { prerender: true }
+  // },
+  // routeRules: {
+  //   '/_nuxt/**': { headers: { 'cache-control': 'max-age=31536000, immutable' } }
+  // },
+  // nitro: {
+  //   compressPublicAssets: true,
+  // },
 
   compatibilityDate: '2025-01-15',
 
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
-  }
+  // eslint: {
+  //   config: {
+  //     stylistic: {
+  //       commaDangle: 'never',
+  //       braceStyle: '1tbs'
+  //     }
+  //   }
+  // }
 
 })

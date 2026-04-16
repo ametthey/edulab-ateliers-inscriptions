@@ -7,34 +7,30 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: 'Administration',
     to: 'admin',
-    active: route.name === 'admin'
   },
   {
     label: 'Gestion des ateliers',
     to: 'gestion',
-    active: route.name === 'gestion'
   },
   {
     label: 'Création d\'atelier',
     to: 'createatelier',
-    active: route.name === 'createatelier'
-  },
+  }
+])
+const itemsBackPublic = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'Les formulaires',
+    label: '👤 Les formulaires',
     to: 'ateliers',
-    active: route.name === 'Ateliers'
   }
 ])
 const itemsPublic = computed<NavigationMenuItem[]>(() => [
   {
     label: 'Retour aux ateliers',
     to: '/ateliers',
-    active: route.name === 'ateliers'
   }
 ])
-
 defineProps<{
-  layoutName: string
+  layoutName?: string
 }>()
 </script>
 
@@ -42,7 +38,8 @@ defineProps<{
   <div v-if="layoutName == 'form-public'">
     <UNavigationMenu color="neutral" :items="itemsPublic" />
   </div>
-  <div v-if="layoutName == 'default'">
+  <div v-if="layoutName == 'default'" class="flex flex-row">
     <UNavigationMenu color="neutral" :items="items" />
+    <UNavigationMenu color="warning" variant="link" :items="itemsBackPublic" />
   </div>
 </template>

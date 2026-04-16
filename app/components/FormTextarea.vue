@@ -2,6 +2,7 @@
 defineProps<{
   label: string
   name: string
+  rows: string
   placeholder?: string
   modelValue: string | number | null
 }>()
@@ -11,7 +12,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="my-4">
+  <div class="my-2">
     <UFormField
       :label="label"
       :name="name"
@@ -19,7 +20,7 @@ defineEmits<{
       <UTextarea
         :value="modelValue"
         class="w-96"
-        :rows="6"
+        :rows="rows"
         :placeholder="placeholder"
         @update:model-value="$emit('update:modelValue', $event)"
       />

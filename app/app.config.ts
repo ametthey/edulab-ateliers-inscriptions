@@ -56,6 +56,9 @@ export default defineAppConfig({
         size: 'md',
         orientation: 'vertical'
       }
+    },
+    container: {
+      base: 'w-full max-w-(--ui-container) mx-auto px-0 sm:px-0 lg:px-0'
     }
   }
 })

@@ -48,14 +48,11 @@ useSeoMeta({
 
 <template>
   <div>
-    <UPageHeader
-      :title="title"
-      :description="description"
-    />
-
     <UContainer>
-      <h1> Tableau des ateliers</h1>
-
+      <div class="gestion-title mt-20">
+        <p class="text-2xl font-bold">{{title}}</p>
+      </div>
+      <div class="my-12">
       <UTable id="tableauAteliers" :data="data" :columns="columns" class="flex-1">
         <template #lien-cell="{ row }">
           <NuxtLink :to="`/ateliers/atelier-${row.original.id}`" target="_blank">
@@ -73,6 +70,9 @@ useSeoMeta({
           </UButton>
         </template>
       </UTable>
+
+      </div>
+      <UButton color="neutral" variant="outline" size="md" class="font-bold text-sm uppercase" to="/createatelier" label="Créer un nouvel atelier" />
     </UContainer>
   </div>
 </template>

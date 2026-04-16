@@ -17,11 +17,16 @@ export default {
     },
     {
       name: 'admin',
-      path: '/Admin',
+      path: '/admin',
       component: () => import('~/pages/Admin.vue'),
     },
     {
-      name: 'createatelier',
+      name: 'gestion',
+      path: '/gestion',
+      component: () => import('~/pages/Gestion.vue'),
+    },
+    {
+      name: 'create-atelier',
       path: '/CreateAtelier',
       component: () => import('~/pages/CreateAtelier.vue'),
     },

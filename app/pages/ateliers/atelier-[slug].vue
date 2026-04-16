@@ -32,8 +32,6 @@ const submitAtelierPublic = async () => {
       body: createFormPublic.value
     })
     modalOpen.value = true
-
-    // console.log(`le champ titre est ${response.atelier.titre} `)
     console.log('submit atelier public')
   } catch(error) {
     // error
@@ -52,8 +50,8 @@ const nombreInscriptions = computed(() =>
 /*****************************************
  * Meta
  *****************************************/
-const title = atelier.value.titre
-const description = atelier.value.description
+const title = atelier.value?.titre ?? ''
+const description = atelier.value?.description ?? ''
 
 definePageMeta({
   layout: 'form-public'
@@ -136,34 +134,43 @@ useSeoMeta({
                 Envoyer
             </UButton>
           </UForm>
+          <AtelierSlugModalConfirm
+            v-model:open="modalOpen"
+            :atelier_id="atelier.id"
+            :prenom="createFormPublic.prenom"
+            :email="createFormPublic.email"
+            :telephone="createFormPublic.telephone"
+            :age="createFormPublic.age"
+            @close="closeModal"
+          />
 
-          <UModal v-model:open="modalOpen">
-            <template #content>
-              <div class="p-6 space-y-4">
-                <p class="text-lg font-semibold">
-                Votre inscription est terminé,<br> vous allez reçevoir un email de confirmation.
-                <br>
-                Voici les informations retenues
-                l'id de l'atelier est {{atelier.id}}
-                <br>
-                La personne est {{ createFormPublic.prenom }}
-                <br>
-                Son email est {{ createFormPublic.email }}
-                <br>
-                Son téléphone est {{ createFormPublic.telephone }}
-                <br>
-                Son age est {{ createFormPublic.age}}
-                </p>
-                <div class="flex justify-end">
-                  <UButton
-                    label="Fermer"
-                    color="primary"
-                    @click="closeModal"
-                  />
-                </div>
-              </div>
-            </template>
-          </UModal>
+          <!-- <UModal v-model:open="modalOpen"> -->
+          <!--   <template #content> -->
+          <!--     <div class="p-6 space-y-4"> -->
+          <!--       <p class="text-lg font-semibold"> -->
+          <!--       Votre inscription est terminé,<br> vous allez reçevoir un email de confirmation. -->
+          <!--       <br> -->
+          <!--       Voici les informations retenues -->
+          <!--       l'id de l'atelier est {{atelier.id}} -->
+          <!--       <br> -->
+          <!--       La personne est {{ createFormPublic.prenom }} -->
+          <!--       <br> -->
+          <!--       Son email est {{ createFormPublic.email }} -->
+          <!--       <br> -->
+          <!--       Son téléphone est {{ createFormPublic.telephone }} -->
+          <!--       <br> -->
+          <!--       Son age est {{ createFormPublic.age}} -->
+          <!--       </p> -->
+          <!--       <div class="flex justify-end"> -->
+          <!--         <UButton -->
+          <!--           label="Fermer" -->
+          <!--           color="primary" -->
+          <!--           @click="closeModal" -->
+          <!--         /> -->
+          <!--       </div> -->
+          <!--     </div> -->
+          <!--   </template> -->
+          <!-- </UModal> -->
 
         </div>
       </UContainer>
