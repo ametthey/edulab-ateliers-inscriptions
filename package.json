@@ -12,9 +12,7 @@
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.102",
-    "@iconify-json/simple-icons": "^1.2.78",
     "@libsql/client": "^0.17.2",
-    "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.6.1",
     "drizzle-orm": "^0.45.2",
     "nuxt": "^4.4.2",

@@ -14,31 +14,29 @@ defineProps<{
 <template>
   <div
     :id="monid"
-    class="mb-4 mt-8 max-w-lg mx-auto flex flex-col items-start justify-items-start formulaire-public-presentation"
+    class="flex flex-col gap-4 formulaire-public-presentation"
   >
-    <p class="text-2xl font-bold">{{ title }}</p>
-    <div class="flex flex-col">
-      <!-- Nom de l'atelier -->
-      <div class="my-2 flex flex-col justify-items-start">
-        <p class="text-sm  font-bold">Nom de l'atelier</p>
-        <p class="text-sm font-light">{{ atelier }}</p>
+    <div class="flex flex-col items-center">
+      <p class="text-xs uppercase font-extrabold">Atelier</p>
+      <p class="text-lg tracking-tight font-light">{{ atelier }}</p>
+    </div>
+    <div class="flex flex-col items-center">
+      <p class="text-xs uppercase font-extrabold">Description</p>
+      <p class="text-sm text-center font-light w-60 text-sm/4">{{ description }}</p>
+    </div>
+    <div class="flex flex-row justify-center items-center gap-8">
+      <div class="flex flex-col items-center">
+        <p class="text-xs uppercase font-extrabold">Date</p>
+        <p class="text-sm text-center font-light text-sm/4">{{ date }}</p>
       </div>
-      <div class="my-2 flex flex-col justify-items-start">
-        <p class="text-sm  font-bold">Description de l'atelier</p>
-        <p class="text-sm font-light w-90">{{ description }}</p>
+      <div class="flex flex-col items-center">
+        <p class="text-xs uppercase font-extrabold">Horaires</p>
+        <p class="text-sm text-center font-light text-sm/4">{{ horaires }}</p>
       </div>
-      <div class="my-2 flex flex-col justify-items-start">
-        <p class="text-sm  font-bold">Date de l'atelier</p>
-        <p class="text-sm font-light">{{ date }}</p>
-      </div>
-      <div class="my-2 flex flex-col justify-items-start">
-        <p class="text-sm  font-bold">Horaires de l'atelier</p>
-        <p class="text-sm font-light">{{ horaires }}</p>
-      </div>
-      <div class="my-2 flex flex-col justify-items-start">
-        <p class="text-sm  font-bold">Nombre de places disponible</p>
-        <p class="text-sm font-light">{{ Number(places) - inscriptions }} disponible</p>
-      </div>
+    </div>
+    <div class="flex flex-col items-center">
+      <p class="text-xs uppercase font-extrabold">Nombre de places</p>
+      <p class="text-sm text-center font-light text-sm/4">{{ Number(places) - inscriptions }}/{{ Number(places) }} disponible</p>
     </div>
   </div>
 </template>

@@ -12,10 +12,11 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="my-2">
+  <div class="mb-2">
     <UFormField
       :label="label"
       :name="name"
+        :ui="{label: 'text-xs uppercase font-extrabold'}"
     >
       <UInput
         required

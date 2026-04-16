@@ -6,12 +6,12 @@ const { data: inscriptionsData } = await useFetch('/api/inscription.informations
  * Tableau
  *****************************************/
 const columns = [
-  { accessorKey: 'titre', header: 'Titre' },
+  { accessorKey: 'titre', header: 'Atelier' },
   { accessorKey: 'date', header: 'Date' },
-  { accessorKey: 'nb_places', header: 'Places' },
-  { id: 'dispo_places', header: 'Places disponible' },
-  { id: 'lien', header: 'Lien' },
-  { id: 'supprimer', header: 'Supprimer' }
+  { accessorKey: 'nb_places', header: 'Jauge' },
+  { id: 'dispo_places', header: 'Places dispo' },
+  { id: 'modifier', header: '' },
+  { id: 'supprimer', header: '' }
 ]
 
 /*****************************************
@@ -49,30 +49,29 @@ useSeoMeta({
 <template>
   <div>
     <UContainer>
-      <div class="gestion-title mt-20">
-        <p class="text-2xl font-bold">{{title}}</p>
-      </div>
+      <PageHeader titre="Les ateliers en cours" />
       <div class="my-12">
-      <UTable id="tableauAteliers" :data="data" :columns="columns" class="flex-1">
-        <template #lien-cell="{ row }">
-          <NuxtLink :to="`/ateliers/atelier-${row.original.id}`" target="_blank">
-          Lien vers l'atelier
-          </NuxtLink>
-        </template>
-
+      <UTable id="tableauAteliers" :empty="'pas d\'atelier'" :data="data" :columns="columns" class="flex-1">
         <template #dispo_places-cell="{ row }">
           {{ Number(row.original.nb_places) - (inscriptionsData?.filter(i => i.atelier_id === row.original.id).length ?? 0) }}
         </template>
-
+          <template #modifier-header>Modifier</template>
+          <template #supprimer-header>Supprimer</template>
+        <template #modifier-cell="{ row }">
+          <UButton color="info" variant="ghost" @click="navigateTo(`/editatelier/${row.original.id}`)">
+          Modifier
+          </UButton>
+        </template>
         <template #supprimer-cell="{ row }">
           <UButton color="error" variant="ghost" @click="supprimerAtelier(row.original.id)">
-            Supprimer
+          Supprimer
           </UButton>
         </template>
       </UTable>
 
       </div>
       <UButton color="neutral" variant="outline" size="md" class="font-bold text-sm uppercase" to="/createatelier" label="Créer un nouvel atelier" />
+
     </UContainer>
   </div>
 </template>

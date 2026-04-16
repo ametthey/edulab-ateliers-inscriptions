@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 /*****************************************
  * Meta
  *****************************************/
@@ -23,12 +22,8 @@ useSeoMeta({
 
 <template>
   <div>
-    <UPage>
-      <UPageBody>
-        <UPageHero
-          title="Formulaire"
-        />
-      </UPageBody>
-    </UPage>
+    <UContainer>
+      <PageCTA/>
+    </UContainer>
   </div>
 </template>

@@ -7,14 +7,9 @@ const layoutPublic = 'page-public'
     <!-- Header -->
     <LayoutHeader :layoutName="layoutPublic" />
 
-    <!-- Main -->
     <UMain>
-      <UPage>
-        <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
-        <UContainer>
-          <slot />
-        </UContainer>
-      </UPage>
+      <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
+        <slot />
     </UMain>
   </div>
 </template>

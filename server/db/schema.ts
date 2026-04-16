@@ -6,8 +6,8 @@ export const ateliers = sqliteTable('ateliers', {
   horaires: text('horaires').notNull(),
   date: text('date').notNull(),
   description: text('description').notNull(),
-  nb_places: text('nb_places').notNull(),
-  // createdAt: text('created_at').default(new Date().toISOString())
+  nb_places: integer('nb_places').notNull(),
+  // outil: text('outil').notNull(),
 })
 
 export const inscriptions = sqliteTable('inscriptions', {

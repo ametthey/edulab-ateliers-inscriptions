@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 /*****************************************
  * Modal
  *****************************************/
@@ -56,7 +55,7 @@ useSeoMeta({
 <template>
   <div>
     <UContainer>
-      <div class="gestion-title mt-20">
+      <div class="gestion-title mt-10">
         <p class="text-2xl font-bold">{{title}}</p>
       </div>
       <div class="flex flex-col items-start justify-items-start mt-12 container-formulaire-public">
@@ -72,6 +71,11 @@ useSeoMeta({
             name="titre-atelier"
             type="text"
             placeholder="Entrer le titre de l'atelier"
+          />
+          <FormSelect
+            v-model="createFormInfos.outil"
+            label="Outil"
+            :items="setOutils"
           />
           <div class="flex flex-row gap-4 ">
             <!-- Date de l'atelier -->
@@ -98,7 +102,6 @@ useSeoMeta({
               label="Description de l'atelier"
               name="description-atelier"
               placeholder="Entrer la description de l'atelier"
-              rows="2"
             />
             <!-- Nombre de places de l'atelier -->
             <FormInput
@@ -113,13 +116,16 @@ useSeoMeta({
           <!-- Bouton envoyer -->
           <UButton
             type="submit"
-            class="mt-6"
+            color="neutral"
+            variant="outline"
+            size="md"
+            class="font-bold text-sm uppercase mt-6"
           >
             Envoyer
           </UButton>
         </UForm>
 
-        <CreateAtelierModalConfirm
+        <LazyCreateAtelierModalConfirm
           v-model:open="modalOpen"
           :titre="createFormInfos.titre"
           :description="createFormInfos.description"

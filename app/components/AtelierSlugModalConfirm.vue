@@ -15,7 +15,7 @@ defineEmits<{
 </script>
 
 <template>
-  <UModal :open="open" @update:open="$emit('update:open', $event)">
+  <UModal :dismissible="false" :open="open" @update:open="$emit('update:open', $event)">
     <template #content>
       <div class="p-6 space-y-4">
         <p class="text-base font-light">

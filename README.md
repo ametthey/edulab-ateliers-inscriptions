@@ -15,19 +15,22 @@
 - [x] Supprimer les pages ```_Liste.vue``` ```_Projets.vue``` et leurs dépendances
 - [ ] Trouver comment renommer les posts en atelier-{{titre}} ```atelier-[slug].vue```
 - [x] Ranger les scripts avec cette ordre : META, FORMULAIRE, FONCTION
-- [ ] Quand je sélectionne une lettre sur le front, la souris est mode blinking...
-- [ ] Créer de sous page /edition/atelier-[slug] ou je peux modifier le formulaire de chaque atelier.
+- [x] Quand je sélectionne une lettre sur le front, la souris est mode blinking...
+- [x] Créer de sous page /edition/atelier-[slug] ou je peux modifier le formulaire de chaque atelier.
+- [ ] Ajouter 'ans' dans la colonne Âge du tableau ```Gestion.vue```
+- [ ] Mise en page des informations d'ateliers dans le tableau ```Gestion.vue```
+- [ ] Validation du numéro de téléphone et du mail dans le formulaire ```atelier-[slug].vue```
 
 ### Components
 
 - [x] ```AppHeader.vue``` - Renommer les labels des pages
 
 ### Server
-- [ ] lecture de la documentation sur data-fetching https://nuxt.com/docs/4.x/getting-started/data-fetching
-- [ ] api + files : documentation
-- [ ] data + files : documentation
-- [ ] db + files : documentation
-- [ ] drizzle.config.ts
+- [x] lecture de la documentation sur data-fetching https://nuxt.com/docs/4.x/getting-started/data-fetching
+- [x] api + files : documentation
+- [x] data + files : documentation
+- [x] db + files : documentation
+- [x] drizzle.config.ts
 
 ### Config files
 

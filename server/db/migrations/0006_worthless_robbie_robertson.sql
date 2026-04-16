@@ -1,0 +1,1 @@
+ALTER TABLE `ateliers` DROP COLUMN `outil`;

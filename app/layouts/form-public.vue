@@ -7,14 +7,11 @@ const layoutPublic = 'form-public'
     <!-- Header -->
     <LayoutHeader :layoutName="layoutPublic" />
 
-    <!-- Main -->
-    <UMain>
-      <UPage>
-        <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
-        <UContainer>
-          <slot />
-        </UContainer>
-      </UPage>
-    </UMain>
+    <UPage>
+      <LayoutBanner :layoutName="layoutPublic" />
+      <UContainer>
+        <slot />
+      </UContainer>
+    </UPage>
   </div>
 </template>

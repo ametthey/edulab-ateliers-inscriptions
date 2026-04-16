@@ -7,15 +7,12 @@ const layoutDefault = 'default'
     <!-- Header -->
     <LayoutHeader :layoutName="layoutDefault" />
 
-    <!-- Main -->
-    <UMain>
-      <UPage>
-        <!-- <LayoutBanner :layoutName="layoutDefault" /> -->
-        <UContainer>
-          <slot />
-        </UContainer>
-      </UPage>
-    </UMain>
+    <UPage>
+      <LayoutBanner :layoutName="layoutDefault" />
+      <UContainer>
+        <slot />
+      </UContainer>
+    </UPage>
 
     <UFooter>
       <template #left>

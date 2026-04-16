@@ -36,6 +36,20 @@
       "when": 1776300734194,
       "tag": "0004_lethal_lockheed",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1776367169564,
+      "tag": "0005_shocking_fantastic_four",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1776371370057,
+      "tag": "0006_worthless_robbie_robertson",
+      "breakpoints": true
     }
   ]
 }

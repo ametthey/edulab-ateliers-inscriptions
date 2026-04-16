@@ -4,4 +4,5 @@ export const setFormInfos = () => ({
   date: '',
   description: '',
   nb_places: '',
+  outil: ''
 })

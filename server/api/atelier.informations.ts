@@ -2,6 +2,7 @@ import { db } from '../db/index'
 import { ateliers } from '../db/schema'
 
 export default defineEventHandler(async (event) => {
+  assertMethod(event, 'POST')
   const body = await readBody(event)
 
   const result = await db.insert(ateliers).values({
@@ -10,6 +11,7 @@ export default defineEventHandler(async (event) => {
     date: body.date,
     description: body.description,
     nb_places: body.nb_places,
+    outil: body.outil,
 
   }).returning()
 

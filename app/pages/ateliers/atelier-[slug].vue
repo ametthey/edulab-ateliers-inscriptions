@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const { data } = await useFetch('/api/atelier.informations')
-const { data: inscriptionsData } = await useFetch('/api/inscription.informations')
+// Récupère l'id de l'atelier depuis l'URL
+const route = useRoute()
+const id = Number(route.params.slug)
+
+// Charge uniquement l'atelier concerné + son nombre d'inscriptions
+const { data: atelier } = await useFetch(`/api/ateliers/${id}`)
 
 /*****************************************
  * Modal
@@ -10,7 +13,6 @@ const modalOpen = ref(false)
 
 function closeModal() {
   modalOpen.value = false
-
   cleanForm()
 }
 
@@ -27,114 +29,104 @@ const submitAtelierPublic = async () => {
   try {
     createFormPublic.value.atelier_id = atelier.value!.id
 
-    const response = await $fetch('/api/atelier.public', {
+    await $fetch('/api/inscription', {
       method: 'POST',
       body: createFormPublic.value
     })
+
     modalOpen.value = true
-    console.log('submit atelier public')
   } catch(error) {
-    // error
     console.log(error)
   }
 }
-/*****************************************
- * Post config
- *****************************************/
-const route = useRoute()
-const atelier = computed(() => data.value?.find(a => a.id === Number(route.params.slug)))
-const nombreInscriptions = computed(() =>
-  inscriptionsData.value?.filter(i => i.atelier_id === atelier.value?.id).length ?? 0
-)
 
 /*****************************************
  * Meta
  *****************************************/
-const title = atelier.value?.titre ?? ''
-const description = atelier.value?.description ?? ''
-
 definePageMeta({
   layout: 'form-public'
 })
 useHead({
-  title: title,
-  description: description,
+  title: () => atelier.value?.titre ?? '',
+  description: () => atelier.value?.description ?? '',
   htmlAttrs: {
     class: 'atelier-public-page'
   }
 })
 useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description
+  title: () => atelier.value?.titre ?? '',
+  description: () => atelier.value?.description ?? '',
+  ogTitle: () => atelier.value?.titre ?? '',
+  ogDescription: () => atelier.value?.description ?? '',
 })
 </script>
 
 <template>
-  <div v-if="data == undefined">
-    No fucking data
+  <div v-if="!atelier">
+    Atelier introuvable.
   </div>
 
   <div v-else>
-      <UContainer>
-        <!-- Les informations de présentation  -->
-        <FormPresentationAtelier
-          :monid="'form-public-atelier-' + atelier.id"
-          title="Les informations de l'atelier"
-          :atelier="atelier.titre"
-          :description="atelier.description"
-          :date="atelier.date"
-          :horaires="atelier.horaires"
-          :places="atelier.nb_places"
-          :inscriptions="nombreInscriptions"
-        />
-        <!-- Le formulaire -->
-        <div class="flex flex-col align-center container-formulaire-public">
-          <UForm
-            v-model="createFormPublic.id"
+    <UContainer>
+      <div class="flex flex-col mb-10 items-center content-center gap-8">
+      <!-- Les informations de présentation  -->
+      <FormPresentationAtelier
+        :monid="'form-public-atelier-' + atelier.id"
+        title="Les informations de l'atelier"
+        :atelier="atelier.titre"
+        :description="atelier.description"
+        :date="atelier.date"
+        :horaires="atelier.horaires"
+        :places="atelier.nb_places"
+        :inscriptions="atelier.nombreInscriptions"
+      />
+      <!-- Le formulaire -->
+      <div class="flex flex-col">
+        <UForm
             :data-id="atelier.id"
-            class="pb-8 pt-4 min-w-lg mx-auto flex flex-col items-start justify-items-start"
+            class="flex flex-col items-center"
             @submit="submitAtelierPublic">
-            <p class="text-2xl font-bold">Le formulaire de l'atelier</p>
-            <FormInput
-                v-model="createFormPublic.prenom"
-                label="Prénom et Nom"
-                name="prenom-atelier-public"
-                type="text"
-                placeholder="Entrez votre prénom et nom"
-                />
-            <FormInput
-                v-model="createFormPublic.email"
-                label="Email"
-                name="email-atelier-public"
-                type="email"
-                placeholder="Entrez votre email"
-                />
-            <FormInput
-                v-model="createFormPublic.telephone"
-                label="Téléphone"
-                name="telelephone-atelier-public"
-                type="tel"
-                placeholder="Entrez votre téléphone"
-                />
-            <FormInput
-                v-model="createFormPublic.age"
-                label="Âge"
-                name="age-atelier-public"
-                type="number"
-                placeholder="Entrez votre âge"
-                />
-            <!-- Bouton envoyer -->
-            <UButton
-                type="submit"
-                color="neutral"
-                class="mt-6"
-                >
-                Envoyer
-            </UButton>
-          </UForm>
-          <AtelierSlugModalConfirm
+
+        <FormInput
+            v-model="createFormPublic.prenom"
+            label="Prénom et Nom"
+            name="prenom-atelier-public"
+            type="text"
+            placeholder="Entrez votre prénom et nom"
+            />
+        <FormInput
+            v-model="createFormPublic.email"
+            label="Email"
+            name="email-atelier-public"
+            type="email"
+            placeholder="Entrez votre email"
+            />
+        <FormInput
+            v-model="createFormPublic.telephone"
+            label="Téléphone"
+            name="telelephone-atelier-public"
+            type="tel"
+            placeholder="Entrez votre téléphone"
+            />
+        <FormInput
+            v-model="createFormPublic.age"
+            label="Âge"
+            name="age-atelier-public"
+            type="number"
+            placeholder="Entrez votre âge"
+            />
+        <!-- Bouton envoyer -->
+        <UButton
+            type="submit"
+            color="neutral"
+            variant="outline"
+            size="md"
+            class="font-bold text-sm uppercase mt-6 w-max"
+            >
+            Envoyer
+        </UButton>
+        </UForm>
+        <LazyAtelierSlugModalConfirm
             v-model:open="modalOpen"
             :atelier_id="atelier.id"
             :prenom="createFormPublic.prenom"
@@ -142,37 +134,10 @@ useSeoMeta({
             :telephone="createFormPublic.telephone"
             :age="createFormPublic.age"
             @close="closeModal"
-          />
+            />
 
-          <!-- <UModal v-model:open="modalOpen"> -->
-          <!--   <template #content> -->
-          <!--     <div class="p-6 space-y-4"> -->
-          <!--       <p class="text-lg font-semibold"> -->
-          <!--       Votre inscription est terminé,<br> vous allez reçevoir un email de confirmation. -->
-          <!--       <br> -->
-          <!--       Voici les informations retenues -->
-          <!--       l'id de l'atelier est {{atelier.id}} -->
-          <!--       <br> -->
-          <!--       La personne est {{ createFormPublic.prenom }} -->
-          <!--       <br> -->
-          <!--       Son email est {{ createFormPublic.email }} -->
-          <!--       <br> -->
-          <!--       Son téléphone est {{ createFormPublic.telephone }} -->
-          <!--       <br> -->
-          <!--       Son age est {{ createFormPublic.age}} -->
-          <!--       </p> -->
-          <!--       <div class="flex justify-end"> -->
-          <!--         <UButton -->
-          <!--           label="Fermer" -->
-          <!--           color="primary" -->
-          <!--           @click="closeModal" -->
-          <!--         /> -->
-          <!--       </div> -->
-          <!--     </div> -->
-          <!--   </template> -->
-          <!-- </UModal> -->
-
-        </div>
-      </UContainer>
+      </div>
+    </div>
+    </UContainer>
   </div>
 </template>
