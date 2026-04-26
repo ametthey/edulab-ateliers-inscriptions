@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
     date: body.date,
     description: body.description,
     nb_places: body.nb_places,
-    outil: body.outil,
 
   }).returning()
 

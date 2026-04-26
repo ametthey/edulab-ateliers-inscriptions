@@ -4,7 +4,8 @@ defineProps<{
   name: string
   type?: string
   placeholder?: string
-  modelValue: string | number | null
+  width?: string
+  modelValue: [value: string | number | null ]
 }>()
 defineEmits<{
   'update:modelValue': [value: string | number | null]
@@ -16,13 +17,14 @@ defineEmits<{
     <UFormField
       :label="label"
       :name="name"
-        :ui="{label: 'text-xs uppercase font-extrabold'}"
+      :ui="{label: 'text-lg uppercase font-medium'}"
     >
       <UInput
         required
         :value="modelValue"
         :type="type || 'text'"
         :placeholder="placeholder"
+        :class="width || ''"
         @update:model-value="$emit('update:modelValue', $event)"
       />
     </UFormField>

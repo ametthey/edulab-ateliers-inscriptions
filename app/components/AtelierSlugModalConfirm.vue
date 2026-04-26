@@ -7,7 +7,6 @@ defineProps<{
   telephone: string
   age: number | null
 }>()
-
 defineEmits<{
   'update:open': [value: boolean]
   'close': []
@@ -40,10 +39,18 @@ defineEmits<{
         <br>
         <span class="pb-2 font-bold text-sm">L'équipe de facilitation</span>
         <br>
-        <img src="/logo.png" alt="logo" class="bt-1 header-logo w-60">
+        <NuxtImg
+          src="/logo.png"
+          alt="logo"
+          sizes="90vw sm:60vw md:350px"
+          format="png"
+          width="439.438"
+          height="292.962"
+          preload
+        />
         </p>
         <div class="flex justify-end">
-          <UButton label="Fermer" color="primary" @click="$emit('close')" />                      </div>
+          <LazyUButton label="Fermer" color="primary" @click="$emit('close')" />                      </div>
       </div>
     </template>
   </UModal>

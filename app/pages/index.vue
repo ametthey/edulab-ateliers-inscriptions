@@ -1,12 +1,14 @@
-<script setup lang="ts">
+<script setup>
 /*****************************************
  * Meta
  *****************************************/
-const title = 'Page d\'accueil'
-const description = ''
+const title = 'test'
+const description = 'teset'
 
 definePageMeta({
-  layout: 'default'
+  middleware: 'auth',
+  layout: 'default',
+  // layoutTransition: 'layout',
 })
 useHead({
   title: title,
@@ -16,14 +18,23 @@ useSeoMeta({
   title: title,
   description: description,
   ogTitle: title,
-  ogDescription: description
+  ogDescription: description,
 })
+/*****************************************
+ * Connexion
+ *****************************************/
+const { user, clear } = useUserSession();
+function logout() {
+  clear();
+  navigateTo("/connexion");
+}
 </script>
 
 <template>
   <div>
     <UContainer>
-      <PageCTA/>
+      <PageCTA />
     </UContainer>
+    <BoiteConnexion @click="logout" />
   </div>
 </template>

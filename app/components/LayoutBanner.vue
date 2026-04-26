@@ -1,13 +1,14 @@
 <script setup lang="ts">
 defineProps<{
-  layoutName: string
+  nom: string,
+  connecte?: string
 }>()
 </script>
 
 <template>
   <UBanner
-    class="fixed bottom-0 layout-banner"
-    :title="'Cette page utilise le layout ' + layoutName"
+    :nom="nom"
+   class="fixed bottom-0 layout-banner"
     color="warning"
     icon="i-lucide-info"
     close-icon="i-lucide-x-circle"

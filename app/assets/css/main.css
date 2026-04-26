@@ -2,7 +2,11 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@theme static {
+/* @theme static { */
+/*   --font-sans: 'Inter', sans-serif; */
+/* } */
+
+:root {
   --font-sans: 'Inter', sans-serif;
 }
 
@@ -16,7 +20,7 @@ button {
 }
 
 .layout-banner {
-  display: none;
+  /* display: none; */
 }
 
 .card-custom {
@@ -25,6 +29,11 @@ button {
   }
 }
 
-.card-atelier {
-  /* aspect-ratio: 1; */
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
 }

@@ -32,7 +32,9 @@ const title = 'Page d\'administration'
 const description = ''
 
 definePageMeta({
+  middleware: 'auth',
   layout: 'default',
+  // layoutTransition: 'layout',
 })
 useHead({
   title: title,
@@ -44,6 +46,14 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description
 })
+/*****************************************
+ * Connexion
+ *****************************************/
+const { user, clear } = useUserSession();
+function logout() {
+  clear();
+  navigateTo("/connexion");
+}
 </script>
 
 <template>
@@ -68,10 +78,10 @@ useSeoMeta({
           </UButton>
         </template>
       </UTable>
-
       </div>
       <UButton color="neutral" variant="outline" size="md" class="font-bold text-sm uppercase" to="/createatelier" label="Créer un nouvel atelier" />
 
     </UContainer>
+        <BoiteConnexion @click="logout" />
   </div>
 </template>

@@ -1,22 +1,29 @@
 {
-  "name": "edulabformulaire",
+  "name": "edulabapp",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "pnpm nuxt build",
     "dev": "nuxt dev",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "preview": "pnpm nuxt preview",
+    "postinstall": "pnpm nuxt prepare",
+    "lint": "pnpm eslint .",
+    "typecheck": "nuxt typecheck",
+    "migrate": "pnpm drizzle-kit migrate",
+    "generate": "pnpm drizzle-kit generate",
+    "studio": "pnpm drizzle-kit studio",
+    "cleanup": "npx nuxi cleanup"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.102",
     "@libsql/client": "^0.17.2",
+    "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.6.1",
     "drizzle-orm": "^0.45.2",
     "nuxt": "^4.4.2",
-    "tailwindcss": "^4.2.2"
+    "nuxt-auth-utils": "0.5.29",
+    "tailwindcss": "^4.2.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",

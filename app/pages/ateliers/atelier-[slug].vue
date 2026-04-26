@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// Récupère l'id de l'atelier depuis l'URL
 const route = useRoute()
 const id = Number(route.params.slug)
 
-// Charge uniquement l'atelier concerné + son nombre d'inscriptions
 const { data: atelier } = await useFetch(`/api/ateliers/${id}`)
 
 /*****************************************
@@ -28,12 +26,10 @@ const createFormPublic = ref(setFormPublic())
 const submitAtelierPublic = async () => {
   try {
     createFormPublic.value.atelier_id = atelier.value!.id
-
     await $fetch('/api/inscription', {
       method: 'POST',
       body: createFormPublic.value
     })
-
     modalOpen.value = true
   } catch(error) {
     console.log(error)
@@ -43,21 +39,23 @@ const submitAtelierPublic = async () => {
 /*****************************************
  * Meta
  *****************************************/
+const titre = "Le formulaire d\'atelier"
+const description = "L'aetlier sera sur ..."
 definePageMeta({
   layout: 'form-public'
 })
 useHead({
-  title: () => atelier.value?.titre ?? '',
-  description: () => atelier.value?.description ?? '',
+  title: titre,
+  description: description.value,
   htmlAttrs: {
     class: 'atelier-public-page'
   }
 })
 useSeoMeta({
-  title: () => atelier.value?.titre ?? '',
-  description: () => atelier.value?.description ?? '',
-  ogTitle: () => atelier.value?.titre ?? '',
-  ogDescription: () => atelier.value?.description ?? '',
+  title: titre,
+  description: description.value,
+  ogTitle: titre,
+  ogDescription: description.value,
 })
 </script>
 
@@ -68,18 +66,17 @@ useSeoMeta({
 
   <div v-else>
     <UContainer>
-      <div class="flex flex-col mb-10 items-center content-center gap-8">
+      <div class="flex flex-col mt-8 items-center gap-8">
       <!-- Les informations de présentation  -->
-      <FormPresentationAtelier
-        :monid="'form-public-atelier-' + atelier.id"
-        title="Les informations de l'atelier"
-        :atelier="atelier.titre"
-        :description="atelier.description"
-        :date="atelier.date"
-        :horaires="atelier.horaires"
-        :places="atelier.nb_places"
-        :inscriptions="atelier.nombreInscriptions"
-      />
+        <Introduction
+          :titre="atelier.titre"
+          :places="atelier.nb_places"
+          :disponibles="atelier.nombreInscriptions"
+          :date="atelier.date"
+          :horaires="atelier.horaires"
+          :description="atelier.description"
+          orientation="vertical"
+        />
       <!-- Le formulaire -->
       <div class="flex flex-col">
         <UForm
@@ -116,7 +113,7 @@ useSeoMeta({
             placeholder="Entrez votre âge"
             />
         <!-- Bouton envoyer -->
-        <UButton
+        <LazyUButton
             type="submit"
             color="neutral"
             variant="outline"
@@ -124,7 +121,7 @@ useSeoMeta({
             class="font-bold text-sm uppercase mt-6 w-max"
             >
             Envoyer
-        </UButton>
+        </LazyUButton>
         </UForm>
         <LazyAtelierSlugModalConfirm
             v-model:open="modalOpen"

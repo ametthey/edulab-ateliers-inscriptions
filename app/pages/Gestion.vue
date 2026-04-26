@@ -28,7 +28,9 @@ const title = 'Gestion des ateliers'
 const description = ''
 
 definePageMeta({
+  middleware: 'auth',
   layout: 'default',
+  // layoutTransition: 'layout',
 })
 useHead({
   title: title,
@@ -40,6 +42,14 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description
 })
+/*****************************************
+ * Connexion
+ *****************************************/
+const { user, clear } = useUserSession();
+function logout() {
+  clear();
+  navigateTo("/connexion");
+}
 </script>
 
 <template>
@@ -82,5 +92,6 @@ useSeoMeta({
       </div>
 
     </UContainer>
+    <BoiteConnexion @click="logout" />
   </div>
 </template>

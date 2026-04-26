@@ -3,10 +3,11 @@ export default defineNuxtConfig({
   modules: [
     // '@nuxt/eslint',
   '@nuxt/ui',
-  // '@nuxt/image',
-  '@nuxt/icon'
-  // '@nuxt/fonts',
-  // 'nuxt-mail'
+  '@nuxt/image',
+  '@nuxt/fonts',
+   // 'nuxt-mail'
+  '@nuxt/icon',
+  'nuxt-auth-utils'
   ],
   // mail: {
   //   message: {
@@ -21,44 +22,71 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
-
-  devtools: false,
-
   icon: {
     provider: 'iconify',
     serverBundle: false,
   },
-    ui: {
+  devtools: {
+    enabled: false,
+  },
+  ui: {
     colorMode: false
   },
-
   ssr: false,
-
+  routeRules: {
+    // '/': { prerender: true },
+    // '/ateliers/**': { swr: true },
+    // '/gestion': { swr: true },
+    // '/admin': { swr: true },
+    // '/createatelier': { swr: 3600 },
+    // '/editatelier/**': { isr: 3600 },
+  },
   css: ['~/assets/css/main.css'],
-
-  // routeRules: {
-  // '/': { prerender: true }
-  // },
-
-  telemetry: false,
-
-  // watch: ['nuxt.config.ts', 'app/app.config.ts'],
-
+  app: {
+    head: {
+      title: 'Nuxt', // default fallback title,
+      htmlAttrs: {
+        lang: "fr",
+      },
+      link:[
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
+    },
+  },
   compatibilityDate: '2025-01-15',
-
-  // eslint: {
-  //   config: {
-  //     stylistic: {
-  //       commaDangle: 'never',
-  //       braceStyle: '1tbs'
-  //     }
-  //   }
-  // }
+  image: {
+    domains: ['localhost'],
+    quality: 70,
+    format: ['jpg', 'png'],
+    screens: {
+      'md': 768,
+      'lg': 1024,
+      'xl': 1280,
+    },
+  },
+  nitro: {
+    typescript: {
+      tsConfig: {
+        exclude: [
+          '../.nuxt/**/*',
+          '../dist/**/*',
+          '../node_modules/**/*'
+        ]
+      }
+    }
+  },
   experimental: {
     defaults: {
       nuxtLink: {
-        prefetchOn: 'interaction',
+        prefetchOn: 'interaction', // Prefetch on hover/focus instead
       },
-    },
+    }
   },
+  vite: {
+    optimizeDeps: {
+      include: [
+        'zod',
+      ]
+    }
+  }
 })

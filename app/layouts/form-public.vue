@@ -8,7 +8,7 @@ const layoutPublic = 'form-public'
     <LayoutHeader :layoutName="layoutPublic" />
 
     <UPage>
-      <LayoutBanner :layoutName="layoutPublic" />
+      <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
       <UContainer>
         <slot />
       </UContainer>

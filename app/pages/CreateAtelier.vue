@@ -38,104 +38,104 @@ const title = 'Créer un nouvel atelier'
 const description = ''
 
 definePageMeta({
+  middleware: 'auth',
   layout: 'default',
+  // layoutTransition: 'layout',
 })
 useHead({
   title: title,
-  description: description,
+  description: description.value,
 })
 useSeoMeta({
   title: title,
-  description: description,
+  description: description.value,
   ogTitle: title,
-  ogDescription: description
+  ogDescription: description.value
 })
+/*****************************************
+ * Connexion
+ *****************************************/
+const { user, clear } = useUserSession();
+function logout() {
+  clear();
+  navigateTo("/connexion");
+}
 </script>
 
 <template>
-  <div>
-    <UContainer>
-      <div class="gestion-title mt-10">
-        <p class="text-2xl font-bold">{{title}}</p>
-      </div>
-      <div class="flex flex-col items-start justify-items-start mt-12 container-formulaire-public">
-        <UForm
-          @submit="submitAtelierInfos"
-          class="flex flex-col items-start justify-items-start"
-        >
-        <div class="flex flex-col">
-          <!-- Titre de l'atelier -->
-          <FormInput
-            v-model="createFormInfos.titre"
-            label="Titre de l'atelier"
-            name="titre-atelier"
-            type="text"
-            placeholder="Entrer le titre de l'atelier"
-          />
-          <FormSelect
-            v-model="createFormInfos.outil"
-            label="Outil"
-            :items="setOutils"
-          />
-          <div class="flex flex-row gap-4 ">
-            <!-- Date de l'atelier -->
-            <FormInput
-                v-model="createFormInfos.date"
-                label="Date de l'atelier"
-                name="date-atelier"
-                type="text"
-                placeholder="23/04/25"
-                />
-            <!-- Horaires de l'atelier -->
-            <FormInput
-              v-model="createFormInfos.horaires"
-              label="Horaire de l'atelier"
-              name="horaire-atelier"
-              type="text"
-              placeholder="14h à 18h30"
-            />
-          </div>
-          <div class="flex flex-col gap-0">
-            <!-- Description de l'atelier -->
-            <FormTextarea
-              v-model="createFormInfos.description"
-              label="Description de l'atelier"
-              name="description-atelier"
-              placeholder="Entrer la description de l'atelier"
-            />
-            <!-- Nombre de places de l'atelier -->
-            <FormInput
-              v-model="createFormInfos.nb_places"
-              label="Places disponibles de l'atelier"
-              name="places-atelier"
-              type="number"
-              placeholder="6"
-            />
-          </div>
-        </div>
-          <!-- Bouton envoyer -->
-          <UButton
-            type="submit"
-            color="neutral"
-            variant="outline"
-            size="md"
-            class="font-bold text-sm uppercase mt-6"
-          >
-            Envoyer
-          </UButton>
-        </UForm>
-
-        <LazyCreateAtelierModalConfirm
-          v-model:open="modalOpen"
-          :titre="createFormInfos.titre"
-          :description="createFormInfos.description"
-          :date="createFormInfos.date"
-          :horaires="createFormInfos.horaires"
-          :nb_places="createFormInfos.nb_places"
-          @close="closeModal"
+  <div class="flex flex-col items-center justify-start mt-4">
+    <PageHeader class="mb-4" :titre="title" />
+    <UForm @submit="submitAtelierInfos">
+      <div class="flex flex-col items-center gap-2">
+        <FormInput
+          v-model="createFormInfos.titre"
+          label="Titre de l'atelier"
+          name="titre-atelier"
+          type="text"
+          width="w-80"
+          placeholder="Entrer le titre de l'atelier"
         />
-
+        <FormTextarea
+          v-model="createFormInfos.description"
+          label="Description de l'atelier"
+          name="description-atelier"
+          placeholder="Entrer la description de l'atelier"
+          rows="3"
+          width="w-80"
+        />
+        <FormSelect
+          v-model="createFormInfos.outil"
+          label="Outil"
+          :items="setOutils"
+          width="w-80"
+        />
+        <FormInput
+          v-model="createFormInfos.date"
+          label="Date de l'atelier"
+          name="date-atelier"
+          type="text"
+          placeholder="23/04/25"
+          width="w-80"
+        />
+        <FormInput
+          v-model="createFormInfos.horaires"
+          label="Horaire de l'atelier"
+          name="horaire-atelier"
+          type="text"
+          placeholder="14h à 18h30"
+          width="w-80"
+        />
+        <FormInput
+          v-model="createFormInfos.nb_places"
+          label="Nombre de places"
+          name="places-atelier"
+          type="number"
+          placeholder="6"
+          width="w-80"
+        />
       </div>
-    </UContainer>
+      <div class="flex flex-wrap justify-center gap-3 mt-2">
+      <UButton
+        type="submit"
+        color="neutral"
+        variant="outline"
+        size="md"
+        class="font-bold text-sm uppercase"
+      >
+        Envoyer
+      </UButton>
+      </div>
+    </UForm>
+    <LazyCreateAtelierModalConfirm
+      v-model:open="modalOpen"
+      :titre="createFormInfos.titre"
+      :description="createFormInfos.description"
+      :date="createFormInfos.date"
+      :horaires="createFormInfos.horaires"
+      :nb_places="createFormInfos.nb_places"
+      @close="closeModal"
+    />
+    />
+    <BoiteConnexion @click="logout" />
   </div>
 </template>

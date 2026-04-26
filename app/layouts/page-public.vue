@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const layoutPublic = 'page-public'
+  const layoutPagePublic = 'page-public'
 </script>
 
 <template>
   <div>
     <!-- Header -->
-    <LayoutHeader :layoutName="layoutPublic" />
+    <LayoutHeader :layoutName="layoutPagePublic" />
 
     <UMain>
       <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
