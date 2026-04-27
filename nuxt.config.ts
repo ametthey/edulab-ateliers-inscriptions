@@ -44,7 +44,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      title: 'Nuxt', // default fallback title,
+      title: 'Edulab Ateliers', // default fallback title,
       htmlAttrs: {
         lang: "fr",
       },
@@ -57,31 +57,20 @@ export default defineNuxtConfig({
   image: {
     domains: ['localhost'],
     quality: 70,
-    format: ['jpg', 'png'],
+    format: ['jpg', 'png', 'webp'],
     screens: {
       'md': 768,
       'lg': 1024,
       'xl': 1280,
     },
   },
-  nitro: {
-    typescript: {
-      tsConfig: {
-        exclude: [
-          '../.nuxt/**/*',
-          '../dist/**/*',
-          '../node_modules/**/*'
-        ]
-      }
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: 'interaction', // Prefetch on hover/focus instead
+      },
     }
   },
-  // experimental: {
-  //   defaults: {
-  //     nuxtLink: {
-  //       prefetchOn: 'interaction', // Prefetch on hover/focus instead
-  //     },
-  //   }
-  // },
   vite: {
     optimizeDeps: {
       include: [

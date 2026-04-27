@@ -1,18 +1,17 @@
 import { db } from '../db/index'
 import { ateliers } from '../db/schema'
+import { atelierSchema } from '~~/shared/validators'
 
 export default defineEventHandler(async (event) => {
   assertMethod(event, 'POST')
   const body = await readBody(event)
+  const parsed = atelierSchema.safeParse(body)
 
-  const result = await db.insert(ateliers).values({
-    titre: body.titre,
-    horaires: body.horaires,
-    date: body.date,
-    description: body.description,
-    nb_places: body.nb_places,
+  if (!parsed.success) {
+    throw createError({ statusCode: 400, message: parsed.error.issues[0]?.message ?? 'Données invalides' })
+  }
 
-  }).returning()
+  const result = await db.insert(ateliers).values(parsed.data).returning()
 
   return { success: true, atelier: result[0] }
 })

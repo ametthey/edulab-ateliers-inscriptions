@@ -2,8 +2,8 @@
 /*****************************************
  * Meta
  *****************************************/
-const title = 'test'
-const description = 'teset'
+const title = 'page d\'accueil'
+const description = 'la page d\'accueil'
 
 definePageMeta({
   middleware: 'auth',

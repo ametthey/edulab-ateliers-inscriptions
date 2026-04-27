@@ -24,11 +24,9 @@ const submitAtelierInfos = async () => {
       body: createFormInfos.value
     })
     modalOpen.value = true
-    console.log('submit atelier infos')
 
   } catch(error) {
     // error
-    console.log(error)
   }
 }
 /*****************************************
@@ -44,13 +42,13 @@ definePageMeta({
 })
 useHead({
   title: title,
-  description: description.value,
+  description: description,
 })
 useSeoMeta({
   title: title,
-  description: description.value,
+  description: description,
   ogTitle: title,
-  ogDescription: description.value
+  ogDescription: description,
 })
 /*****************************************
  * Connexion
@@ -81,12 +79,6 @@ function logout() {
           name="description-atelier"
           placeholder="Entrer la description de l'atelier"
           rows="3"
-          width="w-80"
-        />
-        <FormSelect
-          v-model="createFormInfos.outil"
-          label="Outil"
-          :items="setOutils"
           width="w-80"
         />
         <FormInput

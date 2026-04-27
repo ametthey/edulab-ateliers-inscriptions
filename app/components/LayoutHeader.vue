@@ -27,7 +27,7 @@ defineProps<{
 
 
         <!-- Menu for formulaire public -->
-        <div class="pt-8 w-1/3" v-if="layoutName == 'form-public'">
+        <div class="pt-4 w-1/3" v-if="layoutName == 'form-public'">
           <HeaderMenu layoutName="form-public"/>
         </div>
 
@@ -42,7 +42,7 @@ defineProps<{
           <NuxtImg
             src="logo.png"
             alt="logo"
-            sizes="70vw sm:70vw md:238.863px"
+            sizes="lg:238.863px"
             format="png"
             fetchPriority="high"
           />

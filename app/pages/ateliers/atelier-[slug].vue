@@ -32,30 +32,30 @@ const submitAtelierPublic = async () => {
     })
     modalOpen.value = true
   } catch(error) {
-    console.log(error)
   }
 }
 
 /*****************************************
  * Meta
  *****************************************/
-const titre = "Le formulaire d\'atelier"
-const description = "L'aetlier sera sur ..."
+const titre = "Le formulaire d'atelier"
+const description = "formulaire pour s\'inscrire à l\'atelier"
+
 definePageMeta({
   layout: 'form-public'
 })
 useHead({
   title: titre,
-  description: description.value,
+  description: description,
   htmlAttrs: {
     class: 'atelier-public-page'
   }
 })
 useSeoMeta({
   title: titre,
-  description: description.value,
+  description: description,
   ogTitle: titre,
-  ogDescription: description.value,
+  ogDescription: description,
 })
 </script>
 
