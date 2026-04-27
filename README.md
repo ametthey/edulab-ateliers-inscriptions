@@ -3,6 +3,10 @@
 
 ## TODO
 
+### Fonctionnalités
+
+- [ ] Ajouter la fonction mail.
+
 ### Pages
 
 - [x] les scripts des pages ont la même structure avec useMeta defineMeta et useSEOMeta

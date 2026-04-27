@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    // '@nuxt/eslint',
+  '@nuxt/eslint',
   '@nuxt/ui',
   '@nuxt/image',
   '@nuxt/fonts',
@@ -75,18 +75,18 @@ export default defineNuxtConfig({
       }
     }
   },
-  experimental: {
-    defaults: {
-      nuxtLink: {
-        prefetchOn: 'interaction', // Prefetch on hover/focus instead
-      },
-    }
-  },
+  // experimental: {
+  //   defaults: {
+  //     nuxtLink: {
+  //       prefetchOn: 'interaction', // Prefetch on hover/focus instead
+  //     },
+  //   }
+  // },
   vite: {
     optimizeDeps: {
       include: [
         'zod',
       ]
     }
-  }
+  },
 })

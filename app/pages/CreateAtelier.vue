@@ -135,7 +135,6 @@ function logout() {
       :nb_places="createFormInfos.nb_places"
       @close="closeModal"
     />
-    />
     <BoiteConnexion @click="logout" />
   </div>
 </template>
