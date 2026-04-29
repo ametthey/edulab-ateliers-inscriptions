@@ -8,10 +8,18 @@ const columnsInscriptionsAtelier = [
   { accessorKey: 'email', header: 'Email' },
   { accessorKey: 'telephone', header: 'Téléphone' },
   { accessorKey: 'age', header: 'Âge' },
+  { id: 'status', header: 'Status' },
   { id: 'mail_confirmation', header: '' },
   { id: 'mail_invitation', header: '' },
   { id: 'supprimer', header: 'Supprimer' }
 ]
+
+function atelierRows(atelierInscriptions, nbPlaces) {
+  const filled = atelierInscriptions ?? []
+  const emptyCount = Math.max(0, Number(nbPlaces) - filled.length)
+  const empty = Array.from({ length: emptyCount }, () => ({ _empty: true, prenom: '', email: '', telephone: '', age: '' }))
+  return [...filled, ...empty]
+}
 
 const supprimerInscription = async (id) => {
   await $fetch('/api/inscription.informations', {
@@ -71,7 +79,7 @@ function logout() {
         <!-- TABLEAUX -->
         <UTable
           :empty="'pas d\'inscriptions'"
-          :data="inscriptionsData?.filter(i => i.atelier_id === atelier.id) ?? []"
+          :data="atelierRows(inscriptionsData?.filter(i => i.atelier_id === atelier.id), atelier.nb_places)"
           :columns="columnsInscriptionsAtelier"
           class="flex-1 mt-4"
         >
@@ -79,10 +87,11 @@ function logout() {
           <template #mail_confirmation-header>Email<br>confirmation</template>
           <template #mail_invitation-header>Email<br>invitation</template>
           <template #numero_place-cell="{ row }">{{ row.index + 1 }}</template>
-          <template #mail_confirmation-cell="{ row }">️✅</template>
-          <template #mail_invitation-cell="{ row }">❌</template>
+          <template #status-cell="{ row }">{{ row.index < Number(atelier.nb_places) ? 'Confirmé' : 'En attente' }}</template>
+          <template #mail_confirmation-cell="{ row }">{{ row.original._empty ? '' : row.original.mail_confirmation ? '✅' : '❌' }}</template>
+          <template #mail_invitation-cell="{ row }">{{ row.original._empty ? '' : row.original.mail_invitation ? '✅' : '❌' }}</template>
           <template #supprimer-cell="{ row }">
-            <UButton :ui="{ 'base' : 'px-2 py-1' }" color="error" variant="ghost" @click="supprimerInscription(row.original.id)">
+            <UButton v-if="!row.original._empty" :ui="{ 'base' : 'px-2 py-1' }" color="error" variant="ghost" @click="supprimerInscription(row.original.id)">
               Supprimer
             </UButton>
           </template>

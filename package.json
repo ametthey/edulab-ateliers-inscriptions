@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "production": "nuxi build --dotenv .env.production",
     "build": "pnpm nuxt build",
     "dev": "nuxt dev",
     "preview": "pnpm nuxt preview",
@@ -11,6 +12,8 @@
     "typecheck": "nuxt typecheck",
     "migrate": "pnpm drizzle-kit migrate",
     "generate": "pnpm drizzle-kit generate",
+    "db:sync": "pnpm drizzle-kit generate && pnpm drizzle-kit migrate",
+    "db:push": "pnpm drizzle-kit push",
     "studio": "pnpm drizzle-kit studio",
     "cleanup": "npx nuxi cleanup"
   },
@@ -20,15 +23,21 @@
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.6.1",
     "drizzle-orm": "^0.45.2",
+    "h3": "^1.15.11",
+    "nitropack": "^2.13.3",
+    "nodemailer": "^8.0.7",
     "nuxt": "^4.4.2",
     "nuxt-auth-utils": "0.5.29",
+    "nuxt-email-renderer": "^2.6.0",
+    "nuxt-mail": "8.0.4",
+    "ofetch": "^1.5.1",
     "tailwindcss": "^4.2.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.15.2",
+    "@types/nodemailer": "^8.0.0",
     "drizzle-kit": "^0.31.10",
-    "eslint": "^10.2.0",
+    "sass-embedded": "^1.99.0",
     "typescript": "^6.0.2",
     "vue-tsc": "^3.2.6"
   },

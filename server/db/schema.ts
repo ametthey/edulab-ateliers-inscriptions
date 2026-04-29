@@ -7,6 +7,7 @@ export const ateliers = sqliteTable('ateliers', {
   date: text('date').notNull(),
   description: text('description').notNull(),
   nb_places: integer('nb_places').notNull(),
+  slug: text('slug').unique(),
 })
 
 export const inscriptions = sqliteTable('inscriptions', {
@@ -16,4 +17,6 @@ export const inscriptions = sqliteTable('inscriptions', {
   email: text('email').notNull(),
   telephone: text('telephone').notNull(),
   age: integer('age').notNull(),
+  mail_confirmation: integer('mail_confirmation', { mode: 'boolean' }).notNull().default(false),
+  mail_invitation: integer('mail_invitation', { mode: 'boolean' }).notNull().default(false),
 })
