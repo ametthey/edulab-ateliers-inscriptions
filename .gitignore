@@ -1,8 +1,8 @@
 # Nuxt dev/build outputs
-.claude/
+.claude
 .output
 .data
-.nuxt/
+.nuxt
 .nitro
 .cache
 dist
