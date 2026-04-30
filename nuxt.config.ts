@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-mail',
     'nuxt-email-renderer',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
   ],
   mail: {
     message: {

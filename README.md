@@ -36,3 +36,9 @@
 
 #### Création des informations d'un nouvel atelier
 La page ```CreateAtelier.vue``` permet au facilitateur d'ajouter les informations d'un nouvel atelier
+
+---
+### Documentation
+
+#### Nuxt Email Renderer
+https://nuxtemail.com/

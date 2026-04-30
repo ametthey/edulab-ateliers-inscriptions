@@ -20,6 +20,7 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description,
 })
+
 /*****************************************
  * Connexion
  *****************************************/
