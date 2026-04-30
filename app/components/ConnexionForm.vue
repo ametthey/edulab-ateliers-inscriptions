@@ -31,7 +31,8 @@ const handleSubmitLogin = async () => {
 <template>
   <!--  layout markup ommited for brevity -->
   <div
-    class="flex flex-col items-center justify-center mt-4">
+    class="flex flex-col items-center justify-center pt-4 gap-8">
+    <PageHeader titre="Se connecter" />
     <UForm
       :state="form"
       :schema="schema"

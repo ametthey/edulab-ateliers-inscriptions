@@ -30,9 +30,10 @@ const liens = ref<ButtonProps[]>([
     alt="riso à l'édulab"
     sizes="90vw sm:60vw md:450px"
     format="webp"
-    width="439.438"
-    height="292.962"
+    width="439"
+    height="292"
     preload
+    fetchPriority="high"
   />
   </UPageCTA>
 </template>

@@ -16,7 +16,7 @@ const handleLogin = async (form: { email: string; password: string }) => {
     await fetch();
 
     // then navigate to the protected part of the app
-    navigateTo("/userinfo");
+    navigateTo("/Utilisateur");
   } catch (error) {
     // if there's an error, notify the user with a NuxtUI toast
     // (for toast to work make sure wrap everything in app.vuew with the UApp component)
@@ -54,5 +54,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <ConnexionForm @login="handleLogin" />
+  <div class="main-height flex items-center justify-center">
+    <ConnexionForm @login="handleLogin" />
+  </div>
 </template>

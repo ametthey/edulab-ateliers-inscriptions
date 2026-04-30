@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineProps<{
-  titre: string
+  titre?: string | ''
+  soustitre?: string | ''
+  margin?: string | ''
 }>()
 
 // defineEmits<{
@@ -9,7 +11,8 @@ defineProps<{
 </script>
 
 <template>
-  <div>
-    <p class="text-4xl tracking-tight font-light">{{ titre }}</p>
+  <div :class="margin">
+    <p v-if="titre" class="text-4xl tracking-tight font-light">{{ titre }}</p>
+    <p v-if="soustitre" class="text-3xl tracking-tight font-light text-center w-180">{{ soustitre }}</p>
   </div>
 </template>

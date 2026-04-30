@@ -4,14 +4,11 @@ const layoutDefault = 'default'
 
 <template>
   <div>
-    <!-- Header -->
     <LayoutHeader :layoutName="layoutDefault" />
-
-    <UPage>
-      <!-- <LayoutBanner :layoutName="layoutDefault" /> -->
-      <UContainer>
-        <slot />
-      </UContainer>
-    </UPage>
+    <UMain
+      :ui="{ 'base': 'min-h-[calc(100vh-80px)] ' }"
+    >
+      <slot />
+    </UMain>
   </div>
 </template>

@@ -39,11 +39,11 @@ defineEmits<{
         <br>
         <span class="pb-2 font-bold text-sm">L'équipe de facilitation</span>
         <br>
-        <NuxtImg
+        <LazyNuxtImg
           src="/logo.png"
           alt="logo"
           sizes="90vw sm:60vw md:350px"
-          format="png"
+          format="webp"
           width="439.438"
           height="292.962"
           preload

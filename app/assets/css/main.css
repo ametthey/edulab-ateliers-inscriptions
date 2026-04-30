@@ -11,12 +11,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  /* scroll-behavior: smooth; */
+  /* scrollbar-gutter: stable; */
 }
 
 button {
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .layout-banner {
@@ -36,4 +39,35 @@ button {
 .layout-enter-from,
 .layout-leave-to {
   filter: grayscale(1);
+}
+
+@font-face {
+    font-family: 'edulab';
+    src: url("/fonts/edulab.woff2") format("woff2");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'edulab-threeline';
+    src: url("/fonts/edulab-threeline.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'edulab-hairline';
+    src: url("/fonts/edulab-hairline.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.main-height-header {
+  min-height: calc(100vh - 80px);
+}
+
+.main-height {
+  min-height: calc(100vh - 160px);
+}
+
+.formulaire-public-presentation-header {
+  height: 80px;
 }

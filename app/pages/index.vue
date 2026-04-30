@@ -31,10 +31,12 @@ function logout() {
 </script>
 
 <template>
-  <div>
-    <UContainer>
-      <PageCTA />
-    </UContainer>
+  <div class="main-height flex flex-col items-center justify-center">
+    <PageHeader titre="Page d'accueil"/>
+    <PageHeader soustitre="Process pour ajouter un atelier" margin="mt-8 mb-8"/>
+    <Process />
+    <PageHeader soustitre="Procédure pour s'inscrire en tant que personne" margin="mt-8 mb-8"/>
+    <ProcessPublic />
     <BoiteConnexion @click="logout" />
   </div>
 </template>

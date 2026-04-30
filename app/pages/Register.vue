@@ -16,7 +16,7 @@
         body: form,
       });
       await fetch();
-      navigateTo("/userinfo");
+      navigateTo("/Utilisateur");
     } catch (error) {
       if (error && typeof error === "object" && "statusMessage" in error) {
         toast.add({

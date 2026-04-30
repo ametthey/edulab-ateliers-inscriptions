@@ -1,14 +1,11 @@
 <script setup lang="ts">
-const layoutPublic = 'form-public'
+const layoutSite = 'site'
 </script>
 
 <template>
   <div>
-    <!-- Header -->
-    <LayoutHeader :layoutName="layoutPublic" />
-
     <!-- <UPage> -->
-      <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
+      <!-- <LayoutBanner :layoutName="layoutDefault" /> -->
       <!-- <UContainer> -->
         <slot />
       <!-- </UContainer> -->

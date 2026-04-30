@@ -5,7 +5,7 @@ defineProps<{
   type?: string
   placeholder?: string
   width?: string
-  modelValue: [value: string | number | null ]
+  modelValue: string | number | null
 }>()
 defineEmits<{
   'update:modelValue': [value: string | number | null]

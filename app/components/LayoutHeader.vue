@@ -11,14 +11,15 @@ defineProps<{
   <div>
     <!-- Header public -->
     <div v-if="layoutName == 'form-public' || layoutName == 'page-public'">
-      <div class="pb-8 pt-4 flex flex-row justify-between items-baseline formulaire-public-presentation-header">
+      <div class="flex flex-row justify-around items-center formulaire-public-presentation-header">
         <div class="w-1/3"></div>
         <div class="flex flex-col items-center w-1/3">
           <NuxtImg
               src="/logo.png"
               alt="logo"
-              format="png"
+              format="webp"
               fetchPriority="high"
+              class="header-logo"
               />
           <!-- <p class="mt-1 text-sm leading-3 font-light center">Formulaire d'inscription aux initiations</p> -->
         </div>
@@ -27,7 +28,7 @@ defineProps<{
 
 
         <!-- Menu for formulaire public -->
-        <div class="pt-4 w-1/3" v-if="layoutName == 'form-public'">
+        <div class="w-1/3 justify-self-end" v-if="layoutName == 'form-public'">
           <HeaderMenu layoutName="form-public"/>
         </div>
 
@@ -43,7 +44,7 @@ defineProps<{
             src="logo.png"
             alt="logo"
             sizes="lg:238.863px"
-            format="png"
+            format="webp"
             fetchPriority="high"
           />
         </NuxtLink>

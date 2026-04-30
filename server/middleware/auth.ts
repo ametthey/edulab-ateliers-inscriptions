@@ -1,4 +1,5 @@
 const PUBLIC_ROUTES = [
+  '/api/_auth/',
   '/api/auth/login',
   '/api/auth/register',
   '/api/inscription',

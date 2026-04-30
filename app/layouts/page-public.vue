@@ -4,12 +4,11 @@
 
 <template>
   <div>
-    <!-- Header -->
     <LayoutHeader :layoutName="layoutPagePublic" />
-
-    <UMain>
-      <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
-        <slot />
+    <UMain
+      :ui="{ 'base': 'min-h-[calc(100vh-80px)] ' }"
+    >
+      <slot />
     </UMain>
   </div>
 </template>
