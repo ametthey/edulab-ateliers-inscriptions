@@ -1,0 +1,1 @@
+ALTER TABLE `ateliers` ADD `referent` text NOT NULL;

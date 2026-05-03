@@ -8,6 +8,8 @@ const { data: inscriptionsData } = await useFetch('/api/inscription.informations
 const columns = [
   { accessorKey: 'titre', header: 'Atelier' },
   { accessorKey: 'date', header: 'Date' },
+  { accessorKey: 'outil', header: 'Outil' },
+  { accessorKey: 'referent', header: 'Référent' },
   { accessorKey: 'nb_places', header: 'Jauge' },
   { id: 'dispo_places', header: 'Places dispo' },
   { id: 'modifier', header: '' },
@@ -36,16 +38,7 @@ definePageMeta({
   layout: 'default',
   // layoutTransition: 'layout',
 })
-useHead({
-  title: title,
-  description: description,
-})
-useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description
-})
+usePageMeta(title, description)
 /*****************************************
  * Connexion
  *****************************************/
@@ -57,31 +50,31 @@ function logout() {
 </script>
 
 <template>
-  <div>
-    <UContainer>
-      <PageHeader titre="Les ateliers en cours" />
-      <div class="my-12">
-      <UTable id="tableauAteliers" :empty="'pas d\'atelier'" :data="data" :columns="columns" class="flex-1">
+  <div id="main-container" class="py-10 w-full main-height flex flex-col items-center justify-start">
+      <PageHeader margin="mt-8 mb-8" titre="les ateliers en cours" />
+      <UTable
+        id="tableauAteliers"
+        :empty="'pas d\'atelier'"
+        :data="data"
+        :columns="columns"
+        class="w-3/4"
+      >
         <template #dispo_places-cell="{ row }">
           {{ Number(row.original.nb_places) - (inscriptionsData?.filter(i => i.atelier_id === row.original.id).length ?? 0) }}
         </template>
           <template #modifier-header>Modifier</template>
           <template #supprimer-header>Supprimer</template>
         <template #modifier-cell="{ row }">
-          <UButton color="info" variant="ghost" @click="navigateTo(`/editatelier/${row.original.id}`)">
+          <UButton class="button-admin-table" color="info" variant="ghost" @click="navigateTo(`/editatelier/${row.original.id}`)">
           Modifier
           </UButton>
         </template>
         <template #supprimer-cell="{ row }">
-          <UButton color="error" variant="ghost" @click="supprimerAtelier(row.original.id)">
+          <UButton class="button-admin-table" color="error" variant="ghost" @click="supprimerAtelier(row.original.id)">
           Supprimer
           </UButton>
         </template>
       </UTable>
-      </div>
       <UButton color="neutral" variant="outline" size="md" class="font-bold text-sm uppercase" to="/createatelier" label="Créer un nouvel atelier" />
-
-    </UContainer>
-        <BoiteConnexion @click="logout" />
   </div>
 </template>

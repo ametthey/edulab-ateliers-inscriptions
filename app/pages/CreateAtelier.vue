@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { OUTILS, REFERENTS } from '~~/shared/validators'
 /*****************************************
  * Modal
  *****************************************/
@@ -32,7 +33,7 @@ const submitAtelierInfos = async () => {
 /*****************************************
  * Meta
  *****************************************/
-const title = 'Créer un nouvel atelier'
+const title = 'créer un nouvel atelier'
 const description = ''
 
 definePageMeta({
@@ -40,16 +41,7 @@ definePageMeta({
   layout: 'default',
   // layoutTransition: 'layout',
 })
-useHead({
-  title: title,
-  description: description,
-})
-useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description,
-})
+usePageMeta(title, description)
 /*****************************************
  * Connexion
  *****************************************/
@@ -62,7 +54,7 @@ function logout() {
 
 <template>
   <div class="flex flex-col items-center justify-start mt-4">
-    <PageHeader class="mb-4" :titre="title" />
+    <PageHeader margin="mb-8 mt-8" :titre="title" />
     <UForm @submit="submitAtelierInfos">
       <div class="flex flex-col items-center gap-2">
         <FormInput
@@ -105,6 +97,18 @@ function logout() {
           placeholder="6"
           width="w-80"
         />
+        <FormSelect
+          v-model="createFormInfos.outil"
+          label="Outil"
+          :items="OUTILS.map(o => ({ label: o, value: o }))"
+          width="w-80"
+        />
+        <FormSelect
+          v-model="createFormInfos.referent"
+          label="Référent"
+          :items="REFERENTS.map(r => ({ label: r, value: r }))"
+          width="w-80"
+        />
       </div>
       <div class="flex flex-wrap justify-center gap-3 mt-2">
       <UButton
@@ -125,8 +129,8 @@ function logout() {
       :date="createFormInfos.date"
       :horaires="createFormInfos.horaires"
       :nb_places="createFormInfos.nb_places"
+      :outil="createFormInfos.outil"
       @close="closeModal"
     />
-    <BoiteConnexion @click="logout" />
   </div>
 </template>

@@ -7,6 +7,8 @@ export const ateliers = sqliteTable('ateliers', {
   date: text('date').notNull(),
   description: text('description').notNull(),
   nb_places: integer('nb_places').notNull(),
+  outil: text('outil').notNull(),
+  referent: text('referent').notNull(),
   slug: text('slug').unique(),
 })
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { OUTILS, REFERENTS } from '~~/shared/validators'
 /*****************************************
  * Modal
  *****************************************/
@@ -24,6 +25,8 @@ const editFormInfos = ref({
   date: atelier.value?.date ?? '',
   description: atelier.value?.description ?? '',
   nb_places: atelier.value?.nb_places ?? 0,
+  outil: atelier.value?.outil ?? '',
+  referent: atelier.value?.referent ?? '',
 })
 
 /*****************************************
@@ -36,8 +39,7 @@ const submitEditAtelier = async () => {
       body: { id, ...editFormInfos.value }
     })
     modalOpen.value = true
-    await refreshNuxtData('/api/atelier.informations')
-  console.log('fini?')
+      await refreshNuxtData('/api/atelier.informations')
   } catch (error) {
     console.log(error)
   }
@@ -46,23 +48,14 @@ const submitEditAtelier = async () => {
 /*****************************************
  * Meta
  *****************************************/
-const title = 'Modifier l\'atelier'
+const title = 'modifier l\'atelier'
 const description = ''
 
 definePageMeta({
   middleware: 'auth',
   layout: 'default',
 })
-useHead({
-  title: title,
-  description: description.value,
-})
-useSeoMeta({
-  title: title,
-  description: description.value,
-  ogTitle: title,
-  ogDescription: description.value,
-})
+usePageMeta(title, description)
 /*****************************************
  * Connexion
  *****************************************/
@@ -74,8 +67,8 @@ function logout() {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-start mt-4">
-    <PageHeader class="mb-4" :titre="title" />
+  <div id="main-container" class="py-10 w-full main-height flex flex-col items-center justify-start">
+    <PageHeader margin="mb-8 mt-8" :titre="title" />
     <UForm @submit="submitEditAtelier">
       <div class="flex flex-col items-center gap-2">
         <FormInput
@@ -83,7 +76,7 @@ function logout() {
           label="Titre de l'atelier"
           name="titre-atelier"
           type="text"
-          width="w-80"
+          width="w-100"
           placeholder="Entrer le titre de l'atelier"
         />
         <FormTextarea
@@ -91,8 +84,8 @@ function logout() {
           label="Description de l'atelier"
           name="description-atelier"
           placeholder="Entrer la description de l'atelier"
-          rows="3"
-          width="w-80"
+          rows="10"
+          width="w-100"
         />
         <FormInput
           v-model="editFormInfos.date"
@@ -100,7 +93,7 @@ function logout() {
           name="date-atelier"
           type="text"
           placeholder="23/04/25"
-          width="w-80"
+          width="w-100"
         />
         <FormInput
           v-model="editFormInfos.horaires"
@@ -108,7 +101,7 @@ function logout() {
           name="horaire-atelier"
           type="text"
           placeholder="14h à 18h30"
-          width="w-80"
+          width="w-100"
         />
         <FormInput
           v-model="editFormInfos.nb_places"
@@ -116,7 +109,19 @@ function logout() {
           name="places-atelier"
           type="number"
           placeholder="6"
-          width="w-80"
+          width="w-100"
+        />
+        <FormSelect
+          v-model="editFormInfos.outil"
+          label="Outil"
+          :items="OUTILS.map(o => ({ label: o, value: o }))"
+          width="w-100"
+        />
+        <FormSelect
+          v-model="editFormInfos.referent"
+          label="Référent"
+          :items="REFERENTS.map(r => ({ label: r, value: r }))"
+          width="w-100"
         />
       </div>
       <div class="flex flex-wrap justify-center gap-3 mt-6">
@@ -138,5 +143,4 @@ function logout() {
       @close="closeModal"
     />
   </div>
-    <BoiteConnexion @click="logout" />
 </template>
