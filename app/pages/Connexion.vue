@@ -40,16 +40,7 @@ const description = ''
 definePageMeta({
   layout: 'page-public'
 })
-useHead({
-  title: title,
-  description: description,
-})
-useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description
-})
+usePageMeta(title, description)
 
 </script>
 

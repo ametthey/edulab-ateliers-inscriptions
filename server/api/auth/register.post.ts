@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   // and return an error if it does
   const existingUser = await storage.getItem(email);
   if (existingUser) {
-    return createError({
+    throw createError({
       statusCode: 400,
       statusMessage: "User already exists",
     });

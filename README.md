@@ -6,11 +6,7 @@
 #### Mail
 
 - [ ] Réécrire les 2 templates de mail, ```Invitation.vue``` et ```InscriptionConfirmation.vue``` .
-- [ ] Changer la date d'envoi du mail ```Invitation.vue``` en fonction de la date de l'atelier
-
-### Pages
-
-- [ ] Validation du numéro de téléphone et du mail dans le formulaire ```atelier-[slug].vue```
+- [x] Changer la date d'envoi du mail ```Invitation.vue``` en fonction de la date de l'atelier
 
 ---
 ### Les actions

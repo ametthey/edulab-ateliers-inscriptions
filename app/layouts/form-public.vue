@@ -6,12 +6,7 @@ const layoutPublic = 'form-public'
   <div>
     <!-- Header -->
     <LayoutHeader :layoutName="layoutPublic" />
-
-    <!-- <UPage> -->
-      <!-- <LayoutBanner :layoutName="layoutPublic" /> -->
-      <!-- <UContainer> -->
-        <slot />
-      <!-- </UContainer> -->
-    <!-- </UPage> -->
+    <slot />
+    <BackToTop />
   </div>
 </template>

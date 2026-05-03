@@ -3,16 +3,6 @@ import { ateliers } from '../db/schema'
 import { eq, like, ne } from 'drizzle-orm'
 import { atelierUpdateSchema } from '~~/shared/validators'
 
-function slugify(titre: string): string {
-  return titre
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-}
 
 // Même logique que dans le POST, mais exclut l'atelier en cours de modification
 // pour ne pas détecter son propre slug comme un doublon

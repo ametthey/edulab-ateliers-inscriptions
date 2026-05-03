@@ -3,7 +3,7 @@ const emit = defineEmits<{ click: [] }>()
 </script>
 
 <template>
-  <div class="fixed bottom-5 right-5">
+  <div class="">
     <UButton
       color="neutral"
       variant="outline"

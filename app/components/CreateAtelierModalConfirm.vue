@@ -6,6 +6,7 @@ defineProps<{
   date: string
   horaires: string
   nb_places: string | number
+  outil: string
 }>()
 
 defineEmits<{
@@ -27,7 +28,8 @@ defineEmits<{
           <span class="font-bold">Description</span> {{ description }}<br>
           <span class="font-bold">Date</span> {{ date }}<br>
           <span class="font-bold">Horaires</span> {{ horaires }}<br>
-          <span class="font-bold">Nombre de places</span> {{ nb_places }}
+          <span class="font-bold">Nombre de places</span> {{ nb_places }}<br>
+          <span class="font-bold">Outil</span> {{ outil }}<br>
           <br>
           <br>
           Aller dans <NuxtLink class="underline" to="/Admin">Administration</ NuxtLink> pour voir votre atelier

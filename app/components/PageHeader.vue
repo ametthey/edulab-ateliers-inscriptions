@@ -2,7 +2,7 @@
 defineProps<{
   titre?: string | ''
   soustitre?: string | ''
-  margin?: string | ''
+  margin?: string | 'mt-8 mb-8'
 }>()
 
 // defineEmits<{
@@ -11,8 +11,8 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="margin">
-    <p v-if="titre" class="text-4xl tracking-tight font-light">{{ titre }}</p>
-    <p v-if="soustitre" class="text-3xl tracking-tight font-light text-center w-180">{{ soustitre }}</p>
+  <div :class="margin" class="header-page">
+    <p v-if="titre" class="threeline text-5xl tracking-tight">{{ titre }}</p>
+    <p v-if="soustitre" class="threeline text-4xl tracking-tight para">{{ soustitre }}</p>
   </div>
 </template>

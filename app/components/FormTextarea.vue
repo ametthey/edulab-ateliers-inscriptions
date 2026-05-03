@@ -17,13 +17,14 @@ defineEmits<{
     <UFormField
       :label="label"
       :name="name"
-        :ui="{label: 'text-lg uppercase font-medium'}"
+        :ui="{label: 'text-lg font-medium'}"
     >
       <UTextarea
         :value="modelValue"
          :class="width || 'w-96'"
         :rows="rows || 2"
         :placeholder="placeholder"
+        autoresize
         @update:model-value="$emit('update:modelValue', $event)"
       />
     </UFormField>

@@ -24,6 +24,9 @@ defineEmits<{
           <br>
           <br>
           Aller dans <NuxtLink class="underline" to="/Admin">Administration</ NuxtLink> pour voir votre atelier à jour
+          <br>
+          <br>
+          Aller dans <NuxtLink class="underline" to="/Gestion">Gestion</ NuxtLink> pour voir les personnes inscrites
         </p>
         <div class="flex justify-end">
           <UButton label="Fermer" color="primary" @click="$emit('close')" />                                                                                                                      </div>

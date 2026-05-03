@@ -17,7 +17,7 @@ defineEmits<{
     <UFormField
       :label="label"
       :name="name"
-      :ui="{label: 'text-lg uppercase font-medium'}"
+      :ui="{label: 'text-lg font-medium'}"
     >
       <UInput
         required
@@ -25,6 +25,7 @@ defineEmits<{
         :type="type || 'text'"
         :placeholder="placeholder"
         :class="width || ''"
+        :error-pattern="/^name\..+/"
         @update:model-value="$emit('update:modelValue', $event)"
       />
     </UFormField>

@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
   // if the password is invalid, return an error
   if (!isPasswordValid) {
-    return createError({
+    throw createError({
       statusCode: 400,
       statusMessage: "Svp de vérifier si vous avez un mot de passe et un identifiant",
     });

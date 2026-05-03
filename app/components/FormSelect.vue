@@ -15,11 +15,14 @@ defineEmits<{
   <div class="my-2">
     <UFormField
         :label="label"
+        :ui="{label: 'text-lg font-medium'}"
         >
         <USelect
             :items="items"
+            :model-value="modelValue"
+            :error-pattern="/^name\..+/"
+            :class="width || ''"
             @update:model-value="$emit('update:modelValue', $event)"
-            :class="width || 'w-90'"
             />
     </UFormField>
   </div>

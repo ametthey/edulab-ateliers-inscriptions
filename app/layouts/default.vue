@@ -10,5 +10,6 @@ const layoutDefault = 'default'
     >
       <slot />
     </UMain>
+    <BackToTop />
   </div>
 </template>

@@ -10,17 +10,7 @@ definePageMeta({
   layout: 'default',
   // layoutTransition: 'layout',
 })
-useHead({
-  title: title,
-  description: description,
-})
-useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description,
-})
-
+usePageMeta(title, description)
 /*****************************************
  * Connexion
  *****************************************/
@@ -32,12 +22,10 @@ function logout() {
 </script>
 
 <template>
-  <div class="main-height flex flex-col items-center justify-center">
-    <PageHeader titre="Page d'accueil"/>
-    <PageHeader soustitre="Process pour ajouter un atelier" margin="mt-8 mb-8"/>
-    <Process />
-    <PageHeader soustitre="Procédure pour s'inscrire en tant que personne" margin="mt-8 mb-8"/>
-    <ProcessPublic />
-    <BoiteConnexion @click="logout" />
+  <div id="main-container" class="py-10 main-height flex flex-col items-center justify-center">
+    <PageHeader soustitre="Procédure de création d'atelier" margin="mt-8 mb-8"/>
+    <IndexProcess />
+    <PageHeader soustitre="Procédure d'inscription" margin="mt-8 mb-8"/>
+    <IndexProcessPublic />
   </div>
 </template>

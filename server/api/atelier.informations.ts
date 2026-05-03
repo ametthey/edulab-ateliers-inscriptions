@@ -3,19 +3,6 @@ import { ateliers } from '../db/schema'
 import { atelierSchema } from '~~/shared/validators'
 import { like } from 'drizzle-orm'
 
-// Transforme un titre en slug URL-friendly
-// Ex: "Introduction à la Peinture !" → "introduction-a-la-peinture"
-function slugify(titre: string): string {
-  return titre
-    .normalize('NFD')                // décompose les lettres accentuées (é → e + ́)
-    .replace(/[̀-ͯ]/g, '') // supprime les diacritiques (accents)
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')   // supprime tout sauf lettres, chiffres, espaces, tirets
-    .trim()
-    .replace(/\s+/g, '-')           // remplace les espaces par des tirets
-    .replace(/-+/g, '-')            // fusionne les tirets consécutifs
-}
-
 // Génère un slug unique en ajoutant -2, -3... si le slug de base existe déjà
 async function uniqueSlug(base: string): Promise<string> {
   // Cherche tous les slugs qui commencent par la même base (ex: "mon-atelier", "mon-atelier-2")

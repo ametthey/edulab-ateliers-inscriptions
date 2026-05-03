@@ -36,7 +36,7 @@ defineProps<{
     </div>
 
     <!-- Header default -->
-    <div v-if="layoutName == 'default'">
+    <div class="formulaire-public-presentation-header" v-if="layoutName == 'default'">
       <LazyUHeader>
       <template #left>
         <NuxtLink to="/">
@@ -46,6 +46,7 @@ defineProps<{
             sizes="lg:238.863px"
             format="webp"
             fetchPriority="high"
+            class="header-logo"
           />
         </NuxtLink>
       </template>
@@ -53,6 +54,8 @@ defineProps<{
       <HeaderMenu layoutName="default"/>
 
       <template #right>
+        <UButton color="neutral" variant="outline" size="md" class="ml-4 font-bold text-sm uppercase" to="/ateliers" label="Les formulaires" />
+        <BoiteConnexion />
       </template>
       </LazyUHeader>
     </div>

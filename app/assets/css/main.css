@@ -2,17 +2,39 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* @theme static { */
-/*   --font-sans: 'Inter', sans-serif; */
-/* } */
+
+/* Number */
+/* 1 = 4px */
 
 :root {
+  --ui-header-height: 5rem;
   --font-sans: 'Inter', sans-serif;
+  --font-edulab: 'edulab',sans-serif;
+  /* gris */
+  --gris-1: #4B4B4B;
+  --gris-2: #C8C8C8;
+  --gris-3: #EFEFEF;
+  /* rose */
+  --rose-1:#FFB5FF;
+  --rose-2:#FFCFFF;
+  --rose-3:#FFE8FF;
+  /* jaune */
+  --jaune-1:#FFFF66;
+  --jaune-2:#FFFF8F;
+  --jaune-3:#FFFAD4;
+  /* bleu */
+  --bleu-1:#A6DEFF;
+  --bleu-2:#B8E5FF;
+  --bleu-3:#D6F2FF;
+  /* vert */
+  --vert-1:#B5FCB8;
+  --vert-2:#C7FCC9;
+  --vert-3:#E5FCE8;
 }
 
 html {
-  /* scroll-behavior: smooth; */
-  /* scrollbar-gutter: stable; */
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 button {
@@ -60,6 +82,20 @@ button {
     font-style: normal;
     font-display: swap;
 }
+
+.edulab {
+  font-family: 'edulab', sans-serif;
+}
+.hairline {
+  font-family: 'edulab-hairline', sans-serif;
+}
+.threeline {
+  font-family: 'edulab-threeline', sans-serif;
+}
+
+.para {
+  white-space: pre-wrap;
+}
 .main-height-header {
   min-height: calc(100vh - 80px);
 }
@@ -71,3 +107,26 @@ button {
 .formulaire-public-presentation-header {
   height: 80px;
 }
+
+.atelier-public-form {
+  .text-error {
+    width: 320px;
+    line-break: auto;
+  }
+}
+
+.button-admin-table {
+  padding: 0;
+}
+/* .th-inv { */
+/*   border-color: var(--ui-border-accented); */
+/*   border-right-style: var(--tw-border-style); */
+/*   border-right-width: 2px; */
+/* } */
+/* .th-conf { */
+/*   border-color: var(--ui-border-accented); */
+/*   border-right-style: var(--tw-border-style); */
+/*   border-right-width: 2px; */
+/*   border-left-style: var(--tw-border-style); */
+/*   border-left-width: 2px; */
+/* } */

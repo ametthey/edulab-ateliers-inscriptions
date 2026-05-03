@@ -10,5 +10,6 @@
     >
       <slot />
     </UMain>
+    <BackToTop />
   </div>
 </template>

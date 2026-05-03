@@ -16,8 +16,8 @@ export default defineNuxtConfig({
       host: 'sandbox.smtp.mailtrap.io',
       port: 2525,
       auth: {
-        user: 'bb6df844b48365',
-        pass: '534d02c2aeea22',
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     },
   },
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     colorMode: false
   },
   ssr: false,
-  routeRules: {
+  // routeRules: {
     // Page statiques généré au build
     // '/': { prerender: true },
     // '/connexion': { prerender: true },
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     // '/createatelier': { ssr: true },
     // '/editatelier/**': { ssr: true },
     // '/userinfo': { ssr: true },
-  },
+  // },
   css: ['~/assets/css/main.css'],
   app: {
     head: {
@@ -80,6 +80,9 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    css: {
+      devSourcemap: true,
+    },
     optimizeDeps: {
       include: [
         'zod',

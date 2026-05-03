@@ -34,6 +34,5 @@ defineProps<{
   </div>
   <div v-if="layoutName == 'default'" class="flex flex-row items-center">
     <LazyUNavigationMenu color="neutral" :items="items" />
-    <UButton color="neutral" variant="outline" size="md" class="ml-4 font-bold text-sm uppercase" to="/ateliers" label="Les formulaires" />
   </div>
 </template>
